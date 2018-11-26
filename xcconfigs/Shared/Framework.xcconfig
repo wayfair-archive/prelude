@@ -1,0 +1,31 @@
+//
+//  Framework.xcconfig
+//  Prelude
+//
+//  Created by Kevin Lundberg on 3/29/18.
+//  Copyright © 2018 Wayfair LLC. All rights reserved.
+//
+
+DEFINES_MODULE = YES
+
+// The directory in which to install the build products. This path is prepended by the `DSTROOT`.
+INSTALL_PATH[sdk=iphone*] = $(LOCAL_LIBRARY_DIR)/Frameworks
+// ‣ Other platforms should be added here, and kept current…
+
+// This is a list of paths to be added to the `runpath` search path list for the image
+// being created. At runtime, `dyld` uses the `runpath` when searching for dylibs whose
+// load path begins with `@rpath/`. See [Dynamic Library Programming
+// Topics](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/000-Introduction/Introduction.html).
+LD_RUNPATH_SEARCH_PATHS[sdk=iphone*] = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
+// ‣ Other platforms should be added here, and kept current…
+
+// Used as a prefix for the name of the version info symbol in the generated versioning
+// source file. If you prefix your exported symbols you will probably want to set this to
+// the same prefix.
+VERSION_INFO_PREFIX =
+
+// Selects the process used for version-stamping generated files.
+//
+// * *None:* Use no versioning system.
+// * *Apple Generic:* Use the current project version setting. [apple-generic]
+VERSIONING_SYSTEM = apple-generic

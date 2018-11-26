@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		66FB4F552194BFDF00D1B535 /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 66FB4F582194BFDF00D1B535 /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+				66FB4F752194C00200D1B535 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+			productName = SwiftLint;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		66541CC5217F6698001E088D /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Prelude.framework */; };
+		66FE1E1521AC788200DF98C0 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0E21AC788200DF98C0 /* Monoid.swift */; };
+		66FE1E1621AC788200DF98C0 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0F21AC788200DF98C0 /* Prelude.swift */; };
+		66FE1E1721AC788200DF98C0 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1021AC788200DF98C0 /* Operators.swift */; };
+		66FE1E1821AC788200DF98C0 /* ChangeTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */; };
+		66FE1E1921AC788200DF98C0 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1221AC788200DF98C0 /* Reducers.swift */; };
+		66FE1E1A21AC788200DF98C0 /* Prelude.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE1E1321AC788200DF98C0 /* Prelude.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66FE1E1B21AC788200DF98C0 /* Sequence+Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */; };
+		66FE1E2021AC78A900DF98C0 /* ChangeTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */; };
+		66FE1E2121AC78A900DF98C0 /* SequenceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */; };
+		66FE1E2221AC78A900DF98C0 /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */; };
+		66FE1E2321AC78A900DF98C0 /* ReducersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66541CC6217F6698001E088D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66541CB0217F666E001E088D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66541CBA217F6698001E088D;
+			remoteInfo = Prelude;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		66541CBB217F6698001E088D /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66541CC4217F6698001E088D /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66FE1E0E21AC788200DF98C0 /* Monoid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
+		66FE1E0F21AC788200DF98C0 /* Prelude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prelude.swift; sourceTree = "<group>"; };
+		66FE1E1021AC788200DF98C0 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTracking.swift; sourceTree = "<group>"; };
+		66FE1E1221AC788200DF98C0 /* Reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
+		66FE1E1321AC788200DF98C0 /* Prelude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prelude.h; sourceTree = "<group>"; };
+		66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Prelude.swift"; sourceTree = "<group>"; };
+		66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTrackingTests.swift; sourceTree = "<group>"; };
+		66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceExtensionsTests.swift; sourceTree = "<group>"; };
+		66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreludeTests.swift; sourceTree = "<group>"; };
+		66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducersTests.swift; sourceTree = "<group>"; };
+		79CC1D6A21836FA2000A00C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CompilerWarnings.xcconfig; sourceTree = "<group>"; };
+		79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
+		79CC1D6F21836FA2000A00C2 /* Target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Target.xcconfig; sourceTree = "<group>"; };
+		79CC1D7021836FA2000A00C2 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		79CC1D8C21837BF8000A00C2 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
+		79CC1D8D2183805A000A00C2 /* XCTest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XCTest.xcconfig; sourceTree = "<group>"; };
+		79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Prelude.xcconfig; path = xcconfigs/Prelude.xcconfig; sourceTree = SOURCE_ROOT; };
+		79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PreludeTests.xcconfig; sourceTree = "<group>"; };
+		79E4CF6C21801D4800273142 /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66541CB8217F6698001E088D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66541CC1217F6698001E088D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66541CC5217F6698001E088D /* Prelude.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		66541CAF217F666E001E088D = {
+			isa = PBXGroup;
+			children = (
+				79E4CF92218111DC00273142 /* Sources */,
+				79E4CF8A2180F9A900273142 /* Tests */,
+				66541CBC217F6698001E088D /* Products */,
+				79CC1D6921836FA2000A00C2 /* Supporting Files */,
+				79CC1D6B21836FA2000A00C2 /* xcconfigs */,
+			);
+			sourceTree = "<group>";
+		};
+		66541CBC217F6698001E088D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66541CBB217F6698001E088D /* Prelude.framework */,
+				66541CC4217F6698001E088D /* PreludeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66541CC8217F6698001E088D /* PreludeTests */ = {
+			isa = PBXGroup;
+			children = (
+				79E4CF6C21801D4800273142 /* Supporting Files */,
+				66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */,
+				66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */,
+				66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */,
+				66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */,
+			);
+			path = PreludeTests;
+			sourceTree = "<group>";
+		};
+		79CC1D6921836FA2000A00C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79CC1D6A21836FA2000A00C2 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79CC1D6B21836FA2000A00C2 /* xcconfigs */ = {
+			isa = PBXGroup;
+			children = (
+				79CC1D6C21836FA2000A00C2 /* Shared */,
+				79CC1D7021836FA2000A00C2 /* Project.xcconfig */,
+				79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */,
+				79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */,
+			);
+			path = xcconfigs;
+			sourceTree = "<group>";
+		};
+		79CC1D6C21836FA2000A00C2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */,
+				79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */,
+				79CC1D6F21836FA2000A00C2 /* Target.xcconfig */,
+				79CC1D8C21837BF8000A00C2 /* Framework.xcconfig */,
+				79CC1D8D2183805A000A00C2 /* XCTest.xcconfig */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		79E4CF8A2180F9A900273142 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				66541CC8217F6698001E088D /* PreludeTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		79E4CF92218111DC00273142 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				79E4CF93218111F700273142 /* Prelude */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		79E4CF93218111F700273142 /* Prelude */ = {
+			isa = PBXGroup;
+			children = (
+				66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */,
+				66FE1E0E21AC788200DF98C0 /* Monoid.swift */,
+				66FE1E1021AC788200DF98C0 /* Operators.swift */,
+				66FE1E1321AC788200DF98C0 /* Prelude.h */,
+				66FE1E0F21AC788200DF98C0 /* Prelude.swift */,
+				66FE1E1221AC788200DF98C0 /* Reducers.swift */,
+				66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */,
+			);
+			name = Prelude;
+			path = Sources/Prelude;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		66541CB6217F6698001E088D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66FE1E1A21AC788200DF98C0 /* Prelude.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		66541CBA217F6698001E088D /* Prelude */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Prelude" */;
+			buildPhases = (
+				66541CB6217F6698001E088D /* Headers */,
+				66541CB7217F6698001E088D /* Sources */,
+				66541CB8217F6698001E088D /* Frameworks */,
+				66541CB9217F6698001E088D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Prelude;
+			productName = Prelude;
+			productReference = 66541CBB217F6698001E088D /* Prelude.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		66541CC3217F6698001E088D /* PreludeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "PreludeTests" */;
+			buildPhases = (
+				66541CC0217F6698001E088D /* Sources */,
+				66541CC1217F6698001E088D /* Frameworks */,
+				66541CC2217F6698001E088D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66541CC7217F6698001E088D /* PBXTargetDependency */,
+			);
+			name = PreludeTests;
+			productName = PreludeTests;
+			productReference = 66541CC4217F6698001E088D /* PreludeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		66541CB0217F666E001E088D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1010;
+				TargetAttributes = {
+					66541CBA217F6698001E088D = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1010;
+					};
+					66541CC3217F6698001E088D = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1010;
+					};
+					66FB4F552194BFDF00D1B535 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 66541CB3217F666E001E088D /* Build configuration list for PBXProject "Prelude" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 66541CAF217F666E001E088D;
+			productRefGroup = 66541CBC217F6698001E088D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66541CBA217F6698001E088D /* Prelude */,
+				66541CC3217F6698001E088D /* PreludeTests */,
+				66FB4F552194BFDF00D1B535 /* SwiftLint */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66541CB9217F6698001E088D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66541CC2217F6698001E088D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		66FB4F752194C00200D1B535 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CARTHAGE\" == 'YES' ]; then \n    exit\nfi\n\nif command -v swiftlint >/dev/null; then\n    swiftlint lint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		66541CB7217F6698001E088D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66FE1E1821AC788200DF98C0 /* ChangeTracking.swift in Sources */,
+				66FE1E1921AC788200DF98C0 /* Reducers.swift in Sources */,
+				66FE1E1B21AC788200DF98C0 /* Sequence+Prelude.swift in Sources */,
+				66FE1E1521AC788200DF98C0 /* Monoid.swift in Sources */,
+				66FE1E1621AC788200DF98C0 /* Prelude.swift in Sources */,
+				66FE1E1721AC788200DF98C0 /* Operators.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66541CC0217F6698001E088D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66FE1E2121AC78A900DF98C0 /* SequenceExtensionsTests.swift in Sources */,
+				66FE1E2021AC78A900DF98C0 /* ChangeTrackingTests.swift in Sources */,
+				66FE1E2321AC78A900DF98C0 /* ReducersTests.swift in Sources */,
+				66FE1E2221AC78A900DF98C0 /* PreludeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66541CC7217F6698001E088D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66541CBA217F6698001E088D /* Prelude */;
+			targetProxy = 66541CC6217F6698001E088D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		66541CB4217F666E001E088D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+			};
+			name = Debug;
+		};
+		66541CB5217F666E001E088D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+			};
+			name = Release;
+		};
+		66541CCD217F6698001E088D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		66541CCE217F6698001E088D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		66541CCF217F6698001E088D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		66541CD0217F6698001E088D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		66FB4F562194BFDF00D1B535 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		66FB4F572194BFDF00D1B535 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66541CB3217F666E001E088D /* Build configuration list for PBXProject "Prelude" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66541CB4217F666E001E088D /* Debug */,
+				66541CB5217F666E001E088D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Prelude" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66541CCD217F6698001E088D /* Debug */,
+				66541CCE217F6698001E088D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "PreludeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66541CCF217F6698001E088D /* Debug */,
+				66541CD0217F6698001E088D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66FB4F582194BFDF00D1B535 /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66FB4F562194BFDF00D1B535 /* Debug */,
+				66FB4F572194BFDF00D1B535 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 66541CB0217F666E001E088D /* Project object */;
+}

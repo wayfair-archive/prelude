@@ -1,0 +1,7 @@
+// TODO: Document for devs: how to import additional settings necessary for code signing.
+// TODO: Explore conditional import from possibly existing file system path.
+CODE_SIGN_STYLE = Manual
+
+CODE_SIGN_IDENTITY_Debug[sdk=iphone*] = iPhone Developer
+CODE_SIGN_IDENTITY_Release[sdk=iphone*] = iPhone Distribution
+CODE_SIGN_IDENTITY[sdk=iphone*] = $(CODE_SIGN_IDENTITY_$(CONFIGURATION))

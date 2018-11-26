@@ -1,0 +1,13 @@
+#include "Shared/XCTest.xcconfig"
+
+PRODUCT_NAME = $(TARGET_NAME)
+PRODUCT_BUNDLE_IDENTIFIER = com.wayfair.$(TARGET_NAME)
+
+SWIFT_VERSION = 4.2
+
+TARGETED_DEVICE_FAMILY = 1,2
+IPHONEOS_DEPLOYMENT_TARGET = 10.0
+
+INFOPLIST_FILE = Tests/$(TARGET_NAME)/Supporting Files/Info.plist
+PRODUCT_BUNDLE_IDENTIFIER = com.wayfair.PreludeTests
+PRODUCT_NAME = $(TARGET_NAME:c99extidentifier)
