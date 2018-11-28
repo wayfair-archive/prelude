@@ -1,0 +1,13 @@
+name: Prelude
+options:
+  bundleIdPrefix: com.wayfair
+targets:
+  Prelude:
+    platform: [iOS, macOS, tvOS]
+    sources: [Sources]
+    type: framework
+  PreludeTests:
+    dependencies: [{target: Prelude_$platform}]
+    platform: [iOS, macOS, tvOS]
+    sources: [Tests]
+    type: bundle.unit-test
