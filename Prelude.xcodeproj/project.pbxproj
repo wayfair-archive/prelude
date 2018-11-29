@@ -599,7 +599,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -613,7 +612,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
