@@ -11,3 +11,6 @@ WRAPPER_EXTENSION = xctest
 
 LD_RUNPATH_SEARCH_PATHS[sdk=iphone*] = @loader_path/Frameworks
 // ‣ Other platforms should be added here, and kept current…
+
+CODE_SIGN_IDENTITY =
+CODE_SIGNING_REQUIRED = NO

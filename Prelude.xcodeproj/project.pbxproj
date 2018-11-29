@@ -22,6 +22,18 @@
 
 /* Begin PBXBuildFile section */
 		66541CC5217F6698001E088D /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Prelude.framework */; };
+		6657D9B121AFA8960065E051 /* ChangeTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */; };
+		6657D9B221AFA8960065E051 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0E21AC788200DF98C0 /* Monoid.swift */; };
+		6657D9B321AFA8960065E051 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1021AC788200DF98C0 /* Operators.swift */; };
+		6657D9B421AFA8960065E051 /* Prelude.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE1E1321AC788200DF98C0 /* Prelude.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6657D9B521AFA8960065E051 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0F21AC788200DF98C0 /* Prelude.swift */; };
+		6657D9B621AFA8960065E051 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1221AC788200DF98C0 /* Reducers.swift */; };
+		6657D9B721AFA8960065E051 /* Sequence+Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */; };
+		6657D9C121AFA9850065E051 /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6657D9A721AFA0B80065E051 /* Prelude.framework */; };
+		6657D9C721AFA99B0065E051 /* ChangeTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */; };
+		6657D9C821AFA99B0065E051 /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */; };
+		6657D9C921AFA99B0065E051 /* ReducersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */; };
+		6657D9CA21AFA99B0065E051 /* SequenceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */; };
 		66FE1E1521AC788200DF98C0 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0E21AC788200DF98C0 /* Monoid.swift */; };
 		66FE1E1621AC788200DF98C0 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0F21AC788200DF98C0 /* Prelude.swift */; };
 		66FE1E1721AC788200DF98C0 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1021AC788200DF98C0 /* Operators.swift */; };
@@ -43,11 +55,20 @@
 			remoteGlobalIDString = 66541CBA217F6698001E088D;
 			remoteInfo = Prelude;
 		};
+		6657D9C221AFA9850065E051 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66541CB0217F666E001E088D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6657D9A621AFA0B80065E051;
+			remoteInfo = "Prelude macOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		66541CBB217F6698001E088D /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC4217F6698001E088D /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6657D9A721AFA0B80065E051 /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6657D9BC21AFA9850065E051 /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FE1E0E21AC788200DF98C0 /* Monoid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
 		66FE1E0F21AC788200DF98C0 /* Prelude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prelude.swift; sourceTree = "<group>"; };
 		66FE1E1021AC788200DF98C0 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
@@ -87,6 +108,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6657D9A421AFA0B80065E051 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6657D9B921AFA9850065E051 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6657D9C121AFA9850065E051 /* Prelude.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -106,6 +142,8 @@
 			children = (
 				66541CBB217F6698001E088D /* Prelude.framework */,
 				66541CC4217F6698001E088D /* PreludeTests.xctest */,
+				6657D9A721AFA0B80065E051 /* Prelude.framework */,
+				6657D9BC21AFA9850065E051 /* PreludeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,12 +233,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6657D9A221AFA0B80065E051 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6657D9B421AFA8960065E051 /* Prelude.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		66541CBA217F6698001E088D /* Prelude */ = {
+		66541CBA217F6698001E088D /* Prelude iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Prelude" */;
+			buildConfigurationList = 66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Prelude iOS" */;
 			buildPhases = (
 				66541CB6217F6698001E088D /* Headers */,
 				66541CB7217F6698001E088D /* Sources */,
@@ -211,14 +257,14 @@
 			);
 			dependencies = (
 			);
-			name = Prelude;
+			name = "Prelude iOS";
 			productName = Prelude;
 			productReference = 66541CBB217F6698001E088D /* Prelude.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		66541CC3217F6698001E088D /* PreludeTests */ = {
+		66541CC3217F6698001E088D /* PreludeTests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "PreludeTests" */;
+			buildConfigurationList = 66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "PreludeTests iOS" */;
 			buildPhases = (
 				66541CC0217F6698001E088D /* Sources */,
 				66541CC1217F6698001E088D /* Frameworks */,
@@ -229,9 +275,45 @@
 			dependencies = (
 				66541CC7217F6698001E088D /* PBXTargetDependency */,
 			);
-			name = PreludeTests;
+			name = "PreludeTests iOS";
 			productName = PreludeTests;
 			productReference = 66541CC4217F6698001E088D /* PreludeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6657D9A621AFA0B80065E051 /* Prelude macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6657D9AC21AFA0B80065E051 /* Build configuration list for PBXNativeTarget "Prelude macOS" */;
+			buildPhases = (
+				6657D9A221AFA0B80065E051 /* Headers */,
+				6657D9A321AFA0B80065E051 /* Sources */,
+				6657D9A421AFA0B80065E051 /* Frameworks */,
+				6657D9A521AFA0B80065E051 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Prelude macOS";
+			productName = "Prelude macOS";
+			productReference = 6657D9A721AFA0B80065E051 /* Prelude.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6657D9BB21AFA9850065E051 /* PreludeTests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6657D9C421AFA9850065E051 /* Build configuration list for PBXNativeTarget "PreludeTests macOS" */;
+			buildPhases = (
+				6657D9B821AFA9850065E051 /* Sources */,
+				6657D9B921AFA9850065E051 /* Frameworks */,
+				6657D9BA21AFA9850065E051 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6657D9C321AFA9850065E051 /* PBXTargetDependency */,
+			);
+			name = "PreludeTests macOS";
+			productName = "PreludeTests macOS";
+			productReference = 6657D9BC21AFA9850065E051 /* PreludeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +322,7 @@
 		66541CB0217F666E001E088D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				TargetAttributes = {
 					66541CBA217F6698001E088D = {
@@ -250,6 +332,12 @@
 					66541CC3217F6698001E088D = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1010;
+					};
+					6657D9A621AFA0B80065E051 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					6657D9BB21AFA9850065E051 = {
+						CreatedOnToolsVersion = 10.1;
 					};
 					66FB4F552194BFDF00D1B535 = {
 						CreatedOnToolsVersion = 10.1;
@@ -268,8 +356,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66541CBA217F6698001E088D /* Prelude */,
-				66541CC3217F6698001E088D /* PreludeTests */,
+				66541CBA217F6698001E088D /* Prelude iOS */,
+				6657D9A621AFA0B80065E051 /* Prelude macOS */,
+				66541CC3217F6698001E088D /* PreludeTests iOS */,
+				6657D9BB21AFA9850065E051 /* PreludeTests macOS */,
 				66FB4F552194BFDF00D1B535 /* SwiftLint */,
 			);
 		};
@@ -284,6 +374,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		66541CC2217F6698001E088D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6657D9A521AFA0B80065E051 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6657D9BA21AFA9850065E051 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -338,13 +442,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6657D9A321AFA0B80065E051 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6657D9B121AFA8960065E051 /* ChangeTracking.swift in Sources */,
+				6657D9B621AFA8960065E051 /* Reducers.swift in Sources */,
+				6657D9B721AFA8960065E051 /* Sequence+Prelude.swift in Sources */,
+				6657D9B521AFA8960065E051 /* Prelude.swift in Sources */,
+				6657D9B221AFA8960065E051 /* Monoid.swift in Sources */,
+				6657D9B321AFA8960065E051 /* Operators.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6657D9B821AFA9850065E051 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6657D9CA21AFA99B0065E051 /* SequenceExtensionsTests.swift in Sources */,
+				6657D9C921AFA99B0065E051 /* ReducersTests.swift in Sources */,
+				6657D9C721AFA99B0065E051 /* ChangeTrackingTests.swift in Sources */,
+				6657D9C821AFA99B0065E051 /* PreludeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		66541CC7217F6698001E088D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66541CBA217F6698001E088D /* Prelude */;
+			target = 66541CBA217F6698001E088D /* Prelude iOS */;
 			targetProxy = 66541CC6217F6698001E088D /* PBXContainerItemProxy */;
+		};
+		6657D9C321AFA9850065E051 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6657D9A621AFA0B80065E051 /* Prelude macOS */;
+			targetProxy = 6657D9C221AFA9850065E051 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -353,8 +486,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
 			};
 			name = Debug;
 		};
@@ -362,8 +493,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
 			};
 			name = Release;
 		};
@@ -371,16 +500,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
 		};
@@ -388,15 +514,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Release;
 		};
@@ -433,6 +557,70 @@
 			};
 			name = Release;
 		};
+		6657D9AD21AFA0B80065E051 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		6657D9AE21AFA0B80065E051 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+		6657D9C521AFA9850065E051 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
+			buildSettings = {
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6657D9C621AFA9850065E051 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
+			buildSettings = {
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		66FB4F562194BFDF00D1B535 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -457,7 +645,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Prelude" */ = {
+		66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Prelude iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66541CCD217F6698001E088D /* Debug */,
@@ -466,11 +654,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "PreludeTests" */ = {
+		66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "PreludeTests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66541CCF217F6698001E088D /* Debug */,
 				66541CD0217F6698001E088D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6657D9AC21AFA0B80065E051 /* Build configuration list for PBXNativeTarget "Prelude macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6657D9AD21AFA0B80065E051 /* Debug */,
+				6657D9AE21AFA0B80065E051 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6657D9C421AFA9850065E051 /* Build configuration list for PBXNativeTarget "PreludeTests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6657D9C521AFA9850065E051 /* Debug */,
+				6657D9C621AFA9850065E051 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
