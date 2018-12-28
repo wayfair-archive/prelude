@@ -63,14 +63,6 @@ final class ReducersTests: XCTestCase {
         )
     }
 
-    func testReducerContramap() {
-        let transform: (String) -> Int = { $0.count }
-        XCTAssertEqual(
-            9,
-            strings.reduce(into: 0, sumIntegers.contramap(transform))
-        )
-    }
-
     func testReducerFollowedBy() {
         let anotherStringReducer = Reducer<String, String> { acc, element in
             acc += (element.uppercased() + ",")
@@ -88,6 +80,14 @@ final class ReducersTests: XCTestCase {
         XCTAssertEqual(
             "fooFOO,foobarBAR,barbazBAZ,baz",
             strings.reduce(into: "", (appendStrings <> anotherStringReducer <> appendStrings).updateAccumulatingResult)
+        )
+    }
+
+    func testReducerPullback() {
+        let transform: (String) -> Int = { $0.count }
+        XCTAssertEqual(
+            9,
+            strings.reduce(into: 0, sumIntegers.pullback(transform))
         )
     }
 

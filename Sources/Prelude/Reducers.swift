@@ -38,16 +38,6 @@ public extension Reducer {
 }
 
 public extension Reducer {
-    /// contravariant `map` for reducers. Given a reducer that consumes values of type `X`, and a transform function `(Y) -> X`, return a new reducer that consumes values of type `Y`. This is just `map` with a transform function that goes “in the other direction”
-    ///
-    /// - Parameter transform: a transform function of the type `(Y) -> X`
-    /// - Returns: a new reducer that consumes values of type `Y`
-    func contramap<Y>(_ transform: @escaping (Y) -> X) -> Reducer<A, Y> {
-        return .init { result, element in
-            return self.updateAccumulatingResult(&result, transform(element))
-        }
-    }
-
     /// given two reducers (`self` and `nextReducer`) of the same type, produce a new reducer that consists of running the provided two, in sequence
     ///
     /// - Parameter nextReducer: the reducer to “append” to this one
@@ -56,6 +46,16 @@ public extension Reducer {
         return .init { result, element in
             self.updateAccumulatingResult(&result, element)
             nextReducer.updateAccumulatingResult(&result, element)
+        }
+    }
+
+    /// pullback (contravariant `map`) for reducers. Given a reducer that consumes values of type `X`, and a transform function `(Y) -> X`, return a new reducer that consumes values of type `Y`
+    ///
+    /// - Parameter transform: a transform function of the type `(Y) -> X`
+    /// - Returns: a new reducer that consumes values of type `Y`
+    func pullback<Y>(_ transform: @escaping (Y) -> X) -> Reducer<A, Y> {
+        return .init { result, element in
+            return self.updateAccumulatingResult(&result, transform(element))
         }
     }
 }

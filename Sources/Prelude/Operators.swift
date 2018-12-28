@@ -42,7 +42,7 @@ precedencegroup WayfairPipe {
     higherThan: LogicalConjunctionPrecedence
 }
 
-/// Definition can be found in /Infrastructure/Prelude/Sources/Prelude.swift
+/// Definition can be found in /Sources/Prelude.swift
 infix operator |>: WayfairPipe
 
 // MARK: - right associative

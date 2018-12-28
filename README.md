@@ -162,16 +162,16 @@ let appendIntValuePlus2: Reducer<[String], Int> = .nextPartialResult { arr, inte
 ) // => ["1", "2", "3", "10", "11", "12", "100", "101", "102"]
 ```
 
-### 4. Existing reducers can be adapted to new types with `contramap`
+### 4. Existing reducers can be adapted to new types with `pullback`
 
-If you have a reducer that is hungry for values of type `X`, but you only have values of type `Y` on hand, write a function that transforms `Y`s into `X`s and then adapt your reducer using `contramap`. The adapted reducer will then be able to chomp the new values:
+If you have a reducer that is hungry for values of type `X`, but you only have values of type `Y` on hand, write a function that transforms `Y`s into `X`s and then adapt your reducer using [`pullback`](https://www.pointfree.co/blog/posts/22-some-news-about-contramap). The adapted reducer will then be able to chomp the new values:
 
 ```swift
 let appendIntValue: Reducer<[String], Int> = .nextPartialResult { arr, integer in arr + ["\(integer)"] }
 
 func getCount(of string: String) -> Int { return string.count }
 
-let appendCountValue = appendIntValue.contramap(getCount) // this reducer has been adapted
+let appendCountValue = appendIntValue.pullback(getCount) // this reducer has been adapted
 ["a", "aa", "aaa"].reduce([], appendCountValue) // => ["1", "2", "3"]
 ```
 
