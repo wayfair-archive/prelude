@@ -94,7 +94,7 @@ let people = [
     Person(firstName: "foo", lastName: "bar"),
     Person(firstName: "baz", lastName: "qux")
 ]
-let reduceFirstNames = bigReducer.contramap { (person: Person) in person.firstName }
+let reduceFirstNames = bigReducer.pullback { (person: Person) in person.firstName }
 people.reduce(into: [], reduceFirstNames)
 
 //
