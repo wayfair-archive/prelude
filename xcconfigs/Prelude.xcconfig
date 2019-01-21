@@ -15,3 +15,14 @@ MACOSX_DEPLOYMENT_TARGET = 10.13
 INFOPLIST_FILE = Supporting Files/Info.plist
 
 APPLICATION_EXTENSION_API_ONLY = YES
+
+// With Carthage, four sets of `..`s corresponds to the top-level directory of the app
+// which has taken this dependency (in other words, the project that is using Prelude).
+// Create a `Prelude-Overrides.xcconfig` in this location to optionally override build
+// settings set in this xcconfig.
+//
+// For example, to use Prelude in your project as a static framework, create
+// a `MyApp/Prelude-Overrides.xcconfig` that contains `MACH_O_TYPE = staticlib`.
+//
+// If you have no customizations, you can completely ignore this.
+#include? "../../../../Prelude-Overrides.xcconfig"

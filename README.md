@@ -4,6 +4,16 @@
 
 `Prelude` is a library, developed at [Wayfair](https://www.wayfair.com), for functional programming in Swift. We use this library in [our apps](https://itunes.apple.com/us/developer/wayfair-llc/id525522335) to build features in a functional style.
 
+## Installation
+
+`Prelude` can be installed in your project via [Carthage](https://github.com/Carthage/Carthage) or [Swift Package Manager](https://swift.org/package-manager/). [CocoaPods](https://cocoapods.org) support is [forthcoming](https://github.com/wayfair/prelude/issues/5).
+
+### Carthage customization hook
+
+If you’re incorporating `Prelude` via Carthage and need to tweak build settings (for example, perhaps you want to build the library as a static framework instead, to [improve app launch times](https://developer.apple.com/videos/play/wwdc2016/406/)), we’ve included a reference to a [magic customization file](https://github.com/wayfair/prelude/blob/master/xcconfigs/Prelude.xcconfig#L19) which may be able to help you.
+
+If there’s anything else we can do to support integrating Prelude into your project, please open an issue!
+
 ## Contents
 
 * *Change Tracking*: a specialization of the Writer monad that keeps track of changes to an enclosed value
