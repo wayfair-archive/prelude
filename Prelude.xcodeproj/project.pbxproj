@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		244559F92229775A00CFC0EB /* RefinementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244559F82229775A00CFC0EB /* RefinementsTests.swift */; };
+		244559FA2229775A00CFC0EB /* RefinementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244559F82229775A00CFC0EB /* RefinementsTests.swift */; };
+		249A08412226F8860060AE5D /* Refinements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A08402226F8860060AE5D /* Refinements.swift */; };
+		249A08422226F8860060AE5D /* Refinements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A08402226F8860060AE5D /* Refinements.swift */; };
 		66541CC5217F6698001E088D /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Prelude.framework */; };
 		6657D9B121AFA8960065E051 /* ChangeTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */; };
 		6657D9B221AFA8960065E051 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0E21AC788200DF98C0 /* Monoid.swift */; };
@@ -65,6 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		244559F82229775A00CFC0EB /* RefinementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefinementsTests.swift; sourceTree = "<group>"; };
+		249A08402226F8860060AE5D /* Refinements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refinements.swift; sourceTree = "<group>"; };
 		66541CBB217F6698001E088D /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC4217F6698001E088D /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6657D9A721AFA0B80065E051 /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,11 +157,12 @@
 		66541CC8217F6698001E088D /* PreludeTests */ = {
 			isa = PBXGroup;
 			children = (
-				79E4CF6C21801D4800273142 /* Supporting Files */,
 				66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */,
 				66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */,
 				66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */,
+				244559F82229775A00CFC0EB /* RefinementsTests.swift */,
 				66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */,
+				79E4CF6C21801D4800273142 /* Supporting Files */,
 			);
 			path = PreludeTests;
 			sourceTree = "<group>";
@@ -216,6 +223,7 @@
 				66FE1E1321AC788200DF98C0 /* Prelude.h */,
 				66FE1E0F21AC788200DF98C0 /* Prelude.swift */,
 				66FE1E1221AC788200DF98C0 /* Reducers.swift */,
+				249A08402226F8860060AE5D /* Refinements.swift */,
 				66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */,
 			);
 			name = Prelude;
@@ -427,6 +435,7 @@
 				66FE1E1B21AC788200DF98C0 /* Sequence+Prelude.swift in Sources */,
 				66FE1E1521AC788200DF98C0 /* Monoid.swift in Sources */,
 				66FE1E1621AC788200DF98C0 /* Prelude.swift in Sources */,
+				249A08412226F8860060AE5D /* Refinements.swift in Sources */,
 				66FE1E1721AC788200DF98C0 /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +447,7 @@
 				66FE1E2121AC78A900DF98C0 /* SequenceExtensionsTests.swift in Sources */,
 				66FE1E2021AC78A900DF98C0 /* ChangeTrackingTests.swift in Sources */,
 				66FE1E2321AC78A900DF98C0 /* ReducersTests.swift in Sources */,
+				244559F92229775A00CFC0EB /* RefinementsTests.swift in Sources */,
 				66FE1E2221AC78A900DF98C0 /* PreludeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +461,7 @@
 				6657D9B721AFA8960065E051 /* Sequence+Prelude.swift in Sources */,
 				6657D9B521AFA8960065E051 /* Prelude.swift in Sources */,
 				6657D9B221AFA8960065E051 /* Monoid.swift in Sources */,
+				249A08422226F8860060AE5D /* Refinements.swift in Sources */,
 				6657D9B321AFA8960065E051 /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +473,7 @@
 				6657D9CA21AFA99B0065E051 /* SequenceExtensionsTests.swift in Sources */,
 				6657D9C921AFA99B0065E051 /* ReducersTests.swift in Sources */,
 				6657D9C721AFA99B0065E051 /* ChangeTrackingTests.swift in Sources */,
+				244559FA2229775A00CFC0EB /* RefinementsTests.swift in Sources */,
 				6657D9C821AFA99B0065E051 /* PreludeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
