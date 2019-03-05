@@ -13,8 +13,6 @@ import Prelude
 // Reducers
 //
 
-struct Person { var firstName, lastName: String }
-
 // reducers have an `inout` “state” by default
 let reducer: Reducer<[String], String> = .init { arr, item in arr.append(item) }
 
@@ -27,7 +25,9 @@ let reduceCaps: Reducer<[String], String> = .nextPartialResult { arr, item in
 let bigReducer = reducer <> reduceCaps
 ["foo", "bar", "baz"].reduce([], bigReducer)
 
-// use `contramap` to make it so existing reducers can chomp other types of values
+struct Person { var firstName, lastName: String }
+
+// use `pullback` to make it so existing reducers can chomp other types of values
 let people = [
     Person(firstName: "foo", lastName: "bar"),
     Person(firstName: "baz", lastName: "qux")
@@ -36,7 +36,7 @@ let reduceFirstNames = bigReducer.pullback { (person: Person) in person.firstNam
 people.reduce(into: [], reduceFirstNames)
 
 //
-// Use both together!
+// Use reducers and `Changeable` together!
 //
 
 /// update a `Person` by taking the first component of a tuple as the new first name

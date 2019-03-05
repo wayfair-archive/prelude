@@ -25,6 +25,8 @@
 		244559FA2229775A00CFC0EB /* RefinementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244559F82229775A00CFC0EB /* RefinementsTests.swift */; };
 		249A08412226F8860060AE5D /* Refinements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A08402226F8860060AE5D /* Refinements.swift */; };
 		249A08422226F8860060AE5D /* Refinements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A08402226F8860060AE5D /* Refinements.swift */; };
+		249EE629222DC02200F93941 /* Nat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249EE628222DC02200F93941 /* Nat.swift */; };
+		249EE62A222DC02200F93941 /* Nat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249EE628222DC02200F93941 /* Nat.swift */; };
 		66541CC5217F6698001E088D /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Prelude.framework */; };
 		6657D9B121AFA8960065E051 /* ChangeTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */; };
 		6657D9B221AFA8960065E051 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0E21AC788200DF98C0 /* Monoid.swift */; };
@@ -71,6 +73,7 @@
 /* Begin PBXFileReference section */
 		244559F82229775A00CFC0EB /* RefinementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefinementsTests.swift; sourceTree = "<group>"; };
 		249A08402226F8860060AE5D /* Refinements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refinements.swift; sourceTree = "<group>"; };
+		249EE628222DC02200F93941 /* Nat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nat.swift; sourceTree = "<group>"; };
 		66541CBB217F6698001E088D /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC4217F6698001E088D /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6657D9A721AFA0B80065E051 /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +222,7 @@
 			children = (
 				66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */,
 				66FE1E0E21AC788200DF98C0 /* Monoid.swift */,
+				249EE628222DC02200F93941 /* Nat.swift */,
 				66FE1E1021AC788200DF98C0 /* Operators.swift */,
 				66FE1E1321AC788200DF98C0 /* Prelude.h */,
 				66FE1E0F21AC788200DF98C0 /* Prelude.swift */,
@@ -437,6 +441,7 @@
 				66FE1E1621AC788200DF98C0 /* Prelude.swift in Sources */,
 				249A08412226F8860060AE5D /* Refinements.swift in Sources */,
 				66FE1E1721AC788200DF98C0 /* Operators.swift in Sources */,
+				249EE629222DC02200F93941 /* Nat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +468,7 @@
 				6657D9B221AFA8960065E051 /* Monoid.swift in Sources */,
 				249A08422226F8860060AE5D /* Refinements.swift in Sources */,
 				6657D9B321AFA8960065E051 /* Operators.swift in Sources */,
+				249EE62A222DC02200F93941 /* Nat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

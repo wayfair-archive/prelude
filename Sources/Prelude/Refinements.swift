@@ -14,7 +14,7 @@ public protocol Refinement {
 
     /// implement this function to describe which values of type `RefinedType` should be allowed
     ///
-    /// - Parameter value: a value of type `RefinedType`
+    /// - Parameter value: a proposed value of type `RefinedType`
     /// - Returns: `true` if this rule should allow `value`
     static func isValid(_ value: RefinedType) -> Bool
 }
@@ -29,7 +29,7 @@ public struct RefinementError: Error {
 }
 
 /// a container for a “refined” type. The type parameter `A` represents the underlying value (eg. `Int`). The type parameter `R` represents the “refinement” (eg. `NonZero`, `NotNegative`, `GreaterThanFifty`, etc.)
-public struct Refined<A, R: Refinement> where A == R.RefinedType {
+public struct Refined<A, Rule: Refinement> where A == Rule.RefinedType {
     /// the underlying refined value. This value is guaranteed to satisfy the refinement represented by `R`
     public let value: A
 
@@ -38,24 +38,48 @@ public struct Refined<A, R: Refinement> where A == R.RefinedType {
     /// - Parameter value: the proposed underlying value
     /// - Throws: a `RefinementError` describing any failure
     public init(_ value: A) throws {
-        guard R.isValid(value) else {
-            throw RefinementError("the value “\(value)” doesn’t satisfy the refinement “\(R.self)”")
+        guard Rule.isValid(value) else {
+            throw RefinementError("the value “\(value)” doesn’t satisfy the refinement “\(Rule.self)”")
         }
         self.value = value
     }
 }
 
-extension Refined: Equatable where A: Equatable { }
-
-extension Refined: Hashable where A: Hashable { }
-
 public extension Refinement {
-    /// convenient way initialize a value of type `Refined<RefinedType, Self>` given a proposed value. This is equivalent to calling `try? Refined<RefinedType, Self>.init(value)`, but much easier to type
+    /// make a function’s signature more restrictive. Given a function that takes an unrefined type as its parameter, return a function that performs the same computation, but requires a type of `Refined<RefinedType, Self>` as its parameter
+    ///
+    /// - Parameter f: a function that takes a value of type `RefinedType` as a parameter
+    /// - Returns: the function provided, wrapped to require this refined type as a parameter
+    static func narrow<A>(_ f: @escaping (RefinedType) -> A) -> (Refined<RefinedType, Self>) -> A {
+        return { refined in f(refined.value) }
+    }
+    /// convenient way to initialize a value of type `Refined<RefinedType, Self>` given a proposed value. This is equivalent to calling `try? Refined<RefinedType, Self>.init(value)`, but much easier to type
     ///
     /// - Parameter value: the proposed value
     /// - Returns: a value of type `Refined<RefinedType, Self>`, or nil
     static func of(_ value: RefinedType) -> Refined<RefinedType, Self>? {
         return try? .init(value)
+    }
+}
+
+// MARK: - Equatable
+
+extension Refined: Equatable where A: Equatable { }
+
+// MARK: - Hashable
+
+extension Refined: Hashable where A: Hashable { }
+
+// MARK: - Sequence
+
+public extension Sequence {
+    /// given a sequence of `Element`s (`self`), produce a new array of elements where each element has been refined by the rule `refinement`, and the elements that failed the rule have been discarded
+    ///
+    /// - Parameter refinement: the refinement to apply
+    /// - Returns: the result of refining the elements of `self` by `refinement` and discarding those that did not pass
+    func refineMap<Rule: Refinement>(
+        _ refinement: Rule.Type = Rule.self) -> [Refined<Element, Rule>] where Element == Rule.RefinedType {
+        return compactMap(Rule.of)
     }
 }
 
@@ -133,4 +157,36 @@ public func right<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, R>?
 /// - Returns: the same value, refined by both of the rules, or nil
 public func both<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, Both<L, R>>? {
     return Both<L, R>.of(refined.value)
+}
+
+// MARK: - Int
+
+public extension Int {
+    typealias GreaterThan<N: Nat> = Not<LessThan<Succ<N>>>
+
+    typealias GreaterThanOrEqual<N: Nat> = Not<LessThan<N>>
+
+    typealias GreaterThanZero = GreaterThan<Zero>
+
+    enum LessThan<N: Nat>: Refinement {
+        public typealias RefinedType = Int
+        public static func isValid(_ value: Int) -> Bool {
+            return value < N.intValue
+        }
+    }
+
+    typealias LessThanOrEqual<N: Nat> = LessThan<Succ<N>>
+
+    typealias LessThanZero = LessThan<Zero>
+}
+
+// MARK: - String
+
+public extension String {
+    enum NonEmpty: Refinement {
+        public typealias RefinedType = String
+        public static func isValid(_ value: String) -> Bool {
+            return value.count > 0
+        }
+    }
 }

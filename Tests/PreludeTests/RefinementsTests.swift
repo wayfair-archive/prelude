@@ -65,6 +65,40 @@ final class RefinementsTests: XCTestCase {
         )
     }
 
+    func testNarrow() {
+        let compute: (Int) -> String = { return "\($0 + 1)" }
+        let narrowed = IsPositive.narrow(compute)
+
+        var result: String?
+        if let refined = IsPositive.of(99) {
+            result = narrowed(refined)
+        }
+
+        XCTAssertEqual("100", result)
+    }
+
+    // MARK: - Equatable
+
+    func testMakeSureEquatableThingsAreEquatable() {
+        XCTAssertEqual(NonZero.of(1), NonZero.of(1))
+    }
+
+    // MARK: - Sequence
+
+    func testRefineMap() {
+        var expected = [Refined<Int, IsPositive>]()
+        do {
+            expected.append(try .init(1))
+            expected.append(try .init(2))
+            expected.append(try .init(3))
+        } catch {
+            XCTFail("shouldn’t get here")
+        }
+        XCTAssertEqual(
+            expected,
+            [-2, -1, 0, 1, 2, 3].refineMap(IsPositive.self))
+    }
+
     // MARK: - Both
 
     func testRefinementOfFunctionSucceeds_both() {
@@ -195,5 +229,52 @@ final class RefinementsTests: XCTestCase {
         XCTAssertNil(
             both(oneOf)
         )
+    }
+
+    // MARK: - Int
+
+    func testIntComparisonRefinements() {
+        let array = [-2, -1, 0, 1, 2, 3, 4, 5]
+
+        XCTAssertEqual(
+            [3, 4, 5],
+            array
+                .refineMap(Int.GreaterThan<Two>.self)
+                .map { $0.value })
+        XCTAssertEqual(
+            [2, 3, 4, 5],
+            array
+                .refineMap(Int.GreaterThanOrEqual<Two>.self)
+                .map { $0.value })
+        XCTAssertEqual(
+            [1, 2, 3, 4, 5],
+            array
+                .refineMap(Int.GreaterThanZero.self)
+                .map { $0.value })
+        XCTAssertEqual(
+            [-2, -1, 0, 1],
+            array
+                .refineMap(Int.LessThan<Two>.self)
+                .map { $0.value })
+        XCTAssertEqual(
+            [-2, -1, 0, 1, 2],
+            array
+                .refineMap(Int.LessThanOrEqual<Two>.self)
+                .map { $0.value })
+        XCTAssertEqual(
+            [-2, -1],
+            array
+                .refineMap(Int.LessThanZero.self)
+                .map { $0.value })
+    }
+
+    // MARK: - String
+
+    func testNonEmptyStringRefinement() {
+        let array = ["foo", "bar", "", "baz", "", "qux"]
+
+        XCTAssertEqual(
+            ["foo", "bar", "baz", "qux"],
+            array.refineMap(String.NonEmpty.self).map { $0.value })
     }
 }

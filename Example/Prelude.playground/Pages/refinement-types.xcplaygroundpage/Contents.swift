@@ -13,44 +13,18 @@ import Prelude
 // Refinement types
 //
 
-enum GreaterThanZero: Refinement {
-    typealias RefinedType = Double
-    static func isValid(_ value: Double) -> Bool {
-        return value > 0.0
-    }
-}
+Int.GreaterThanZero.of(1)
 
-GreaterThanZero.of(1)
+Int.GreaterThanZero.of(-99)
 
-GreaterThanZero.of(-99)
+Int.GreaterThanZero.of(1) == Int.GreaterThanZero.of(1)
 
-enum NotTwentyTwo: Refinement {
-    typealias RefinedType = Double
-    static func isValid(_ value: Double) -> Bool {
-        return value != 22.0
-    }
-}
+let foo: [Refined<Int, Int.GreaterThanZero>] = [-1, 0, 1, 2, 3].refineMap()
 
-Both<GreaterThanZero, NotTwentyTwo>.of(22)
+let bar = [-1, 0, 1, 2, 3].refineMap(Int.GreaterThanZero.self)
 
-Both<GreaterThanZero, NotTwentyTwo>.of(-99)
+foo == bar
 
-Both<GreaterThanZero, NotTwentyTwo>.of(100)
+String.NonEmpty.of("foo")
 
-typealias MyRefinedDouble = Refined<Double, Both<GreaterThanZero, NotTwentyTwo>>
-
-try MyRefinedDouble.init(9)
-
-//try MyRefinedDouble.init(22) // will `throw`
-
-let myDouble = MyRefinedDouble.init(9)
-
-left(myDouble)
-
-let anotherDouble = OneOf<GreaterThanZero, NotTwentyTwo>.of(22)!
-
-both(anotherDouble)
-
-left(anotherDouble)
-
-right(anotherDouble)
+String.NonEmpty.of("")
