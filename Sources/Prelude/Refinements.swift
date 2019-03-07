@@ -19,6 +19,10 @@ public protocol Refinement {
     static func isValid(_ value: RefinedType) -> Bool
 }
 
+fileprivate extension Refinement {
+    static var predicate: Predicate<RefinedType> { return .init(contains: isValid) }
+}
+
 /// error that is thrown when a value fails a refinement. Examine `localizedDescription` to determine the details of the failure
 public struct RefinementError: Error {
     public let localizedDescription: String
@@ -89,7 +93,7 @@ public extension Sequence {
 public enum Both<L: Refinement, R: Refinement>: Refinement where L.RefinedType == R.RefinedType {
     public typealias RefinedType = L.RefinedType
     public static func isValid(_ value: RefinedType) -> Bool {
-        return L.isValid(value) && R.isValid(value)
+        return L.predicate.intersection(R.predicate).contains(value)
     }
 }
 
@@ -118,10 +122,10 @@ public func right<A, L, R>(_ refined: Refined<A, Both<L, R>>) -> Refined<A, R> {
 // MARK: - Not
 
 /// a refinement that can be used to invert any other refinement
-public enum Not<R: Refinement>: Refinement {
-    public typealias RefinedType = R.RefinedType
-    public static func isValid(_ value: R.RefinedType) -> Bool {
-        return !R.isValid(value)
+public enum Not<Rule: Refinement>: Refinement {
+    public typealias RefinedType = Rule.RefinedType
+    public static func isValid(_ value: Rule.RefinedType) -> Bool {
+        return Rule.predicate.inverse.contains(value)
     }
 }
 
@@ -131,7 +135,7 @@ public enum Not<R: Refinement>: Refinement {
 public enum OneOf<L: Refinement, R: Refinement>: Refinement where L.RefinedType == R.RefinedType {
     public typealias RefinedType = L.RefinedType
     public static func isValid(_ value: RefinedType) -> Bool {
-        return L.isValid(value) || R.isValid(value)
+        return L.predicate.union(R.predicate).contains(value)
     }
 }
 
@@ -157,6 +161,17 @@ public func right<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, R>?
 /// - Returns: the same value, refined by both of the rules, or nil
 public func both<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, Both<L, R>>? {
     return Both<L, R>.of(refined.value)
+}
+
+// MARK: - Array
+
+public extension Array {
+    enum NonEmpty: Refinement {
+        public typealias RefinedType = Array
+        public static func isValid(_ value: [Element]) -> Bool {
+            return !value.isEmpty
+        }
+    }
 }
 
 // MARK: - Int
@@ -186,7 +201,7 @@ public extension String {
     enum NonEmpty: Refinement {
         public typealias RefinedType = String
         public static func isValid(_ value: String) -> Bool {
-            return value.count > 0
+            return !value.isEmpty
         }
     }
 }

@@ -231,6 +231,24 @@ final class RefinementsTests: XCTestCase {
         )
     }
 
+    // MARK: - Array
+
+    func testNonEmptyArrayRefinement() {
+        let arrayOfArrays = [
+            [1],
+            [1, 2, 3],
+            [],
+            [0],
+            []
+        ]
+
+        XCTAssertEqual(
+            [[1], [1, 2, 3], [0]],
+            arrayOfArrays
+                .refineMap(Array.NonEmpty.self)
+                .map { $0.value })
+    }
+
     // MARK: - Int
 
     func testIntComparisonRefinements() {

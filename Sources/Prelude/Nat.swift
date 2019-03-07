@@ -22,7 +22,3 @@ public enum Zero: Nat {
 public typealias One = Succ<Zero>
 
 public typealias Two = Succ<Succ<Zero>>
-
-public extension Nat {
-    static var doubleValue: Double { return Double(intValue) }
-}
