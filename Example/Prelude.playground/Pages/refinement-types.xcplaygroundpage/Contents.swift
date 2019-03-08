@@ -75,21 +75,21 @@ func doImportantBusinessLogic3(with person: Refined<Person, ValidName2>) {
 }
 
 // here are some of the basic refinements that are already in the library
-Int.GreaterThanZero.of(1)
+Int.GreaterThanZero.of(1) // => ok
 
-Int.GreaterThan<One>.of(-99)
+Int.GreaterThan<One>.of(-99) // => nil
 
-String.NonEmpty.of("foo")
+String.NonEmpty.of("foo") // => ok
 
-String.NonEmpty.of("")
+String.NonEmpty.of("") // => nil
 
 // conditional conformance of refined types works as expected
-Int.GreaterThanZero.of(1) == Int.GreaterThanZero.of(1)
+Int.GreaterThanZero.of(1) == Int.GreaterThanZero.of(1) // => true
 
 // to `compactMap` **and** refine at the same time, use `refineMap`
-let bar = [-1, 0, 1, 2, 3].refineMap(Int.GreaterThanZero.self)
+let bar = [-1, 0, 1, 2, 3].refineMap(Int.GreaterThanZero.self) // => (3 values)
 
 // you can also write it like this
 let foo: [Refined<Int, Int.GreaterThanZero>] = [-1, 0, 1, 2, 3].refineMap()
 
-foo == bar
+foo == bar // => true

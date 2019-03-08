@@ -36,10 +36,6 @@ public extension Predicate {
         return .init { !self.contains($0) }
     }
 
-    init<S>(_ sequence: S) where S: Sequence, A: Equatable, A == S.Element {
-        contains = { sequence.contains($0) }
-    }
-
     func pullback<B>(_ transform: @escaping (B) -> A) -> Predicate<B> {
         return .init { self.contains(transform($0)) }
     }

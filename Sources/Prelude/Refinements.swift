@@ -163,17 +163,6 @@ public func both<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, Both
     return Both<L, R>.of(refined.value)
 }
 
-// MARK: - Array
-
-public extension Array {
-    enum NonEmpty: Refinement {
-        public typealias RefinedType = Array
-        public static func isValid(_ value: [Element]) -> Bool {
-            return !value.isEmpty
-        }
-    }
-}
-
 // MARK: - Int
 
 public extension Int {

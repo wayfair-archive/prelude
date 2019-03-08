@@ -58,15 +58,6 @@ final class PredicateTests: XCTestCase {
         XCTAssertFalse(myPredicate.contains(1))
     }
 
-    func testSequenceInitializer() {
-        let myPredicate: Predicate<Int> = .init([1, 2, 3])
-        XCTAssertTrue(myPredicate.contains(1))
-        XCTAssertTrue(myPredicate.contains(2))
-        XCTAssertTrue(myPredicate.contains(3))
-        XCTAssertFalse(myPredicate.contains(0))
-        XCTAssertFalse(myPredicate.contains(4))
-    }
-
     func testPullback() {
         let myPredicate: Predicate<String> = greaterThanZero.pullback { $0.count }
         XCTAssertTrue(myPredicate.contains("foobar"))
