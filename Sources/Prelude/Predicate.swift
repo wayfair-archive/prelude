@@ -19,15 +19,11 @@ public extension Predicate {
     }
 
     func subtracting(_ other: Predicate) -> Predicate {
-        return .init { self.contains($0) && !other.contains($0)
-        }
+        return intersection(other.complement)
     }
 
     func symmetricDifference(_ other: Predicate) -> Predicate {
-        return .init { element in
-            return self.contains(element) && !other.contains(element) ||
-                !self.contains(element) && other.contains(element)
-        }
+        return self.subtracting(other).union(other.subtracting(self))
     }
 
     func union(_ other: Predicate) -> Predicate {
@@ -36,7 +32,7 @@ public extension Predicate {
 }
 
 public extension Predicate {
-    var inverse: Predicate<A> {
+    var complement: Predicate<A> {
         return .init { !self.contains($0) }
     }
 

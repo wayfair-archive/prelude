@@ -10,17 +10,17 @@
 /// protocol that represents a rule that can be used to “refine” values of type `RefinedType`. Implement the `static Refinement.isValid(_:)` function to describe which values are allowed.
 public protocol Refinement {
     /// the type being “refined”
-    associatedtype RefinedType
+    associatedtype BaseType
 
     /// implement this function to describe which values of type `RefinedType` should be allowed
     ///
     /// - Parameter value: a proposed value of type `RefinedType`
     /// - Returns: `true` if this rule should allow `value`
-    static func isValid(_ value: RefinedType) -> Bool
+    static func isValid(_ value: BaseType) -> Bool
 }
 
 fileprivate extension Refinement {
-    static var predicate: Predicate<RefinedType> { return .init(contains: isValid) }
+    static var predicate: Predicate<BaseType> { return .init(contains: isValid) }
 }
 
 /// error that is thrown when a value fails a refinement. Examine `localizedDescription` to determine the details of the failure
@@ -33,7 +33,7 @@ public struct RefinementError: Error {
 }
 
 /// a container for a “refined” type. The type parameter `A` represents the underlying value (eg. `Int`). The type parameter `R` represents the “refinement” (eg. `NonZero`, `NotNegative`, `GreaterThanFifty`, etc.)
-public struct Refined<A, Rule: Refinement> where A == Rule.RefinedType {
+public struct Refined<A, Rule: Refinement> where A == Rule.BaseType {
     /// the underlying refined value. This value is guaranteed to satisfy the refinement represented by `R`
     public let value: A
 
@@ -54,14 +54,14 @@ public extension Refinement {
     ///
     /// - Parameter f: a function that takes a value of type `RefinedType` as a parameter
     /// - Returns: the function provided, wrapped to require this refined type as a parameter
-    static func narrow<A>(_ f: @escaping (RefinedType) -> A) -> (Refined<RefinedType, Self>) -> A {
+    static func narrow<A>(_ f: @escaping (BaseType) -> A) -> (Refined<BaseType, Self>) -> A {
         return { refined in f(refined.value) }
     }
     /// convenient way to initialize a value of type `Refined<RefinedType, Self>` given a proposed value. This is equivalent to calling `try? Refined<RefinedType, Self>.init(value)`, but much easier to type
     ///
     /// - Parameter value: the proposed value
     /// - Returns: a value of type `Refined<RefinedType, Self>`, or nil
-    static func of(_ value: RefinedType) -> Refined<RefinedType, Self>? {
+    static func of(_ value: BaseType) -> Refined<BaseType, Self>? {
         return try? .init(value)
     }
 }
@@ -82,7 +82,7 @@ public extension Sequence {
     /// - Parameter refinement: the refinement to apply
     /// - Returns: the result of refining the elements of `self` by `refinement` and discarding those that did not pass
     func refineMap<Rule: Refinement>(
-        _ refinement: Rule.Type = Rule.self) -> [Refined<Element, Rule>] where Element == Rule.RefinedType {
+        _ refinement: Rule.Type = Rule.self) -> [Refined<Element, Rule>] where Element == Rule.BaseType {
         return compactMap(Rule.of)
     }
 }
@@ -90,8 +90,8 @@ public extension Sequence {
 // MARK: - Both
 
 /// a refinement that can be used to combine any two other refinements (`L` and `R`), such that they both must pass
-public enum Both<L: Refinement, R: Refinement>: Refinement where L.RefinedType == R.RefinedType {
-    public typealias RefinedType = L.RefinedType
+public enum Both<L: Refinement, R: Refinement>: Refinement where L.BaseType == R.BaseType {
+    public typealias RefinedType = L.BaseType
     public static func isValid(_ value: RefinedType) -> Bool {
         return L.predicate.intersection(R.predicate).contains(value)
     }
@@ -123,17 +123,17 @@ public func right<A, L, R>(_ refined: Refined<A, Both<L, R>>) -> Refined<A, R> {
 
 /// a refinement that can be used to invert any other refinement
 public enum Not<Rule: Refinement>: Refinement {
-    public typealias RefinedType = Rule.RefinedType
-    public static func isValid(_ value: Rule.RefinedType) -> Bool {
-        return Rule.predicate.inverse.contains(value)
+    public typealias RefinedType = Rule.BaseType
+    public static func isValid(_ value: Rule.BaseType) -> Bool {
+        return Rule.predicate.complement.contains(value)
     }
 }
 
 // MARK: - OneOf
 
 /// a refinement that can be used to combine any two other refinements (`L` and `R`), such that either one or the other must pass
-public enum OneOf<L: Refinement, R: Refinement>: Refinement where L.RefinedType == R.RefinedType {
-    public typealias RefinedType = L.RefinedType
+public enum OneOf<L: Refinement, R: Refinement>: Refinement where L.BaseType == R.BaseType {
+    public typealias RefinedType = L.BaseType
     public static func isValid(_ value: RefinedType) -> Bool {
         return L.predicate.union(R.predicate).contains(value)
     }

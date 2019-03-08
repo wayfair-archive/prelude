@@ -52,7 +52,7 @@ final class PredicateTests: XCTestCase {
     }
 
     func testInverse() {
-        let myPredicate = greaterThanZero.inverse
+        let myPredicate = greaterThanZero.complement
         XCTAssertTrue(myPredicate.contains(0))
         XCTAssertTrue(myPredicate.contains(-1))
         XCTAssertFalse(myPredicate.contains(1))
