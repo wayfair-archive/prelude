@@ -34,3 +34,10 @@ public func flip<A, B, C>(_ f: @escaping (A, B) -> C) -> (B, A) -> C {
 public func |><A, B>(lhs: A, rhs: (A) -> B) -> B {
     return rhs(lhs)
 }
+
+/// The compose operator ">>>" provides an infix notation for function composition.
+/// Composing a function that goes from A -> B with a function that goes from B -> C
+/// creates a new function that goes from A -> C.
+public func >>><A, B, C>(f: @escaping (A) -> B, g: @escaping (B) -> C) -> ((A) -> C) {
+    return { a in g(f(a)) }
+}

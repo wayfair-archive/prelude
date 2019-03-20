@@ -43,3 +43,26 @@ final class PipeForwardTests: XCTestCase {
         XCTAssertEqual(" abc", appendingString)
     }
 }
+
+final class ComposeTests: XCTestCase {
+
+    static func increment(_ value: Double) -> Double {
+        return value + 1
+    }
+
+    static func double(_ value: Double) -> Double {
+        return value + value
+    }
+
+    let doubleThenIncrement = double >>> increment
+
+    let incrementThenDouble = increment >>> double
+
+    func testDoubleThenIncrement() {
+        XCTAssertEqual(3 * 2 + 1, doubleThenIncrement(3))
+    }
+
+    func testIncrementThenDouble() {
+        XCTAssertEqual((3 + 1) * 2, incrementThenDouble(3))
+    }
+}

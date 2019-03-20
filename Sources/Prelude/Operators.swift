@@ -45,6 +45,14 @@ precedencegroup WayfairPipe {
 /// Definition can be found in /Sources/Prelude.swift
 infix operator |>: WayfairPipe
 
+precedencegroup WayfairCompose {
+    associativity: left
+    higherThan: LogicalConjunctionPrecedence
+}
+
+/// Definition can be found in /Sources/Prelude.swift
+infix operator >>>: WayfairCompose
+
 // MARK: - right associative
 
 /// in Haskell: `infixr 6`
