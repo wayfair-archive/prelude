@@ -46,8 +46,8 @@ precedencegroup WayfairPipe {
 infix operator |>: WayfairPipe
 
 precedencegroup WayfairCompose {
-    associativity: left
-    higherThan: LogicalConjunctionPrecedence
+    associativity: right
+    higherThan: WayfairPipe
 }
 
 /// Definition can be found in /Sources/Prelude.swift
