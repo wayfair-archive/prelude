@@ -43,6 +43,7 @@ public extension Predicate {
 
 // MARK: - Monoid
 
+// swiftlint:disable operator_whitespace
 extension Predicate: Monoid {
     public static var empty: Predicate {
         return .init { _ in true }

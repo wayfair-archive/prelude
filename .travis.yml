@@ -1,10 +1,10 @@
 language: swift
-osx_image: xcode10.1
+osx_image: xcode10.2
 xcode_project: Prelude.xcodeproj
 
 matrix:
   include:
     - xcode_scheme: Prelude iOS
-      xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS
+      xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone XS
     - xcode_scheme: Prelude macOS
       xcode_destination: platform=OS X,arch=x86_64

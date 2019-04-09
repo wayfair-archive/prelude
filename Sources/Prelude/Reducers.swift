@@ -18,7 +18,7 @@ public struct Reducer<A, X> {
 
 public extension Reducer {
     /// get this reducer’s reduction function in “immutable” form (for example, to pass it to `Sequence.reduce(_:_:)`)
-    public var next: (A, X) -> A {
+    var next: (A, X) -> A {
         return { result, element in
             var copy = result
             self.updateAccumulatingResult(&copy, element)
@@ -30,7 +30,7 @@ public extension Reducer {
     ///
     /// - Parameter nextPartialResult: a reduction function where the accumulator is immutable
     /// - Returns: a `Reducer` wrapping that function
-    public static func nextPartialResult(_ nextPartialResult: @escaping (A, X) -> A) -> Reducer<A, X> {
+    static func nextPartialResult(_ nextPartialResult: @escaping (A, X) -> A) -> Reducer<A, X> {
         return .init { result, element in
             result = nextPartialResult(result, element)
         }
