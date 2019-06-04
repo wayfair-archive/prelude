@@ -3,7 +3,7 @@
 PRODUCT_NAME = Prelude
 PRODUCT_BUNDLE_IDENTIFIER = com.wayfair.Prelude
 
-SWIFT_VERSION = 4.2
+SWIFT_VERSION = 5.0
 
 MACH_O_TYPE = mh_dylib
 
