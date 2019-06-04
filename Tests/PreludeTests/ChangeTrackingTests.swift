@@ -89,7 +89,7 @@ class ChangeTrackingTests: XCTestCase {
 
     func testApply1() {
         let incrementAndShout: (Int) -> String = { "\($0 + 1)!" }
-        let value = pure(incrementAndShout) <*> pure(2)
+        let value: Changeable<String> = pure(incrementAndShout) <*> pure(2)
         XCTAssertFalse(value.hasChanged)
         XCTAssertEqual("3!", value.value)
     }
