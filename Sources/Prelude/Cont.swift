@@ -11,6 +11,10 @@
 /// To extend an asynchronous computation with an additional synchronous computation, use `Cont.map(_:)`. To extend an asynchronous computation with an additional asynchronous computation, use `Cont.flatMap(_:)`.
 public struct Cont<A> {
     let next: (@escaping (A) -> Void) -> Void
+
+    public init(next: @escaping (@escaping (A) -> Void) -> Void) {
+        self.next = next
+    }
 }
 
 public extension Cont {
