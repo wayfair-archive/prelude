@@ -6,20 +6,6 @@
 	objectVersion = 50;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		66FB4F552194BFDF00D1B535 /* SwiftLint */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 66FB4F582194BFDF00D1B535 /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
-			buildPhases = (
-				66FB4F752194C00200D1B535 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = SwiftLint;
-			productName = SwiftLint;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		244559F92229775A00CFC0EB /* RefinementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244559F82229775A00CFC0EB /* RefinementsTests.swift */; };
 		244559FA2229775A00CFC0EB /* RefinementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244559F82229775A00CFC0EB /* RefinementsTests.swift */; };
@@ -31,6 +17,8 @@
 		24F05D00223074E3003502D0 /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F05CFE223074E3003502D0 /* Predicate.swift */; };
 		24F05D022231581F003502D0 /* PredicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F05D012231581F003502D0 /* PredicateTests.swift */; };
 		24F05D032231581F003502D0 /* PredicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F05D012231581F003502D0 /* PredicateTests.swift */; };
+		24F1FA6B22F3183500404CAB /* MonoidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1FA6A22F3183500404CAB /* MonoidTests.swift */; };
+		24F1FA6C22F3183500404CAB /* MonoidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1FA6A22F3183500404CAB /* MonoidTests.swift */; };
 		66541CC5217F6698001E088D /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Prelude.framework */; };
 		6657D9B121AFA8960065E051 /* ChangeTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */; };
 		6657D9B221AFA8960065E051 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0E21AC788200DF98C0 /* Monoid.swift */; };
@@ -80,6 +68,7 @@
 		249EE628222DC02200F93941 /* Nat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nat.swift; sourceTree = "<group>"; };
 		24F05CFE223074E3003502D0 /* Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
 		24F05D012231581F003502D0 /* PredicateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredicateTests.swift; sourceTree = "<group>"; };
+		24F1FA6A22F3183500404CAB /* MonoidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoidTests.swift; sourceTree = "<group>"; };
 		66541CBB217F6698001E088D /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC4217F6698001E088D /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6657D9A721AFA0B80065E051 /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */,
+				24F1FA6A22F3183500404CAB /* MonoidTests.swift */,
 				24F05D012231581F003502D0 /* PredicateTests.swift */,
 				66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */,
 				66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */,
@@ -359,9 +349,6 @@
 					6657D9BB21AFA9850065E051 = {
 						CreatedOnToolsVersion = 10.1;
 					};
-					66FB4F552194BFDF00D1B535 = {
-						CreatedOnToolsVersion = 10.1;
-					};
 				};
 			};
 			buildConfigurationList = 66541CB3217F666E001E088D /* Build configuration list for PBXProject "Prelude" */;
@@ -381,7 +368,6 @@
 				6657D9A621AFA0B80065E051 /* Prelude macOS */,
 				66541CC3217F6698001E088D /* PreludeTests iOS */,
 				6657D9BB21AFA9850065E051 /* PreludeTests macOS */,
-				66FB4F552194BFDF00D1B535 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
@@ -417,27 +403,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		66FB4F752194C00200D1B535 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CARTHAGE\" == 'YES' ]; then \n    exit\nfi\n\nif command -v swiftlint >/dev/null; then\n    swiftlint lint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		66541CB7217F6698001E088D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -464,6 +429,7 @@
 				66FE1E2321AC78A900DF98C0 /* ReducersTests.swift in Sources */,
 				244559F92229775A00CFC0EB /* RefinementsTests.swift in Sources */,
 				66FE1E2221AC78A900DF98C0 /* PreludeTests.swift in Sources */,
+				24F1FA6B22F3183500404CAB /* MonoidTests.swift in Sources */,
 				24F05D022231581F003502D0 /* PredicateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +459,7 @@
 				6657D9C721AFA99B0065E051 /* ChangeTrackingTests.swift in Sources */,
 				244559FA2229775A00CFC0EB /* RefinementsTests.swift in Sources */,
 				6657D9C821AFA99B0065E051 /* PreludeTests.swift in Sources */,
+				24F1FA6C22F3183500404CAB /* MonoidTests.swift in Sources */,
 				24F05D032231581F003502D0 /* PredicateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,18 +621,6 @@
 			};
 			name = Release;
 		};
-		66FB4F562194BFDF00D1B535 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		66FB4F572194BFDF00D1B535 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -710,15 +665,6 @@
 			buildConfigurations = (
 				6657D9C521AFA9850065E051 /* Debug */,
 				6657D9C621AFA9850065E051 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66FB4F582194BFDF00D1B535 /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66FB4F562194BFDF00D1B535 /* Debug */,
-				66FB4F572194BFDF00D1B535 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

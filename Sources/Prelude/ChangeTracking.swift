@@ -172,13 +172,26 @@ public extension Changeable {
 }
 
 public extension Changeable {
+    /// write a `newValue` of type `V` at the keyPath `keyPath` in a receiver. As `self` is a value of type `Changeable<A>`, `self.hasChanged` will be updated to reflect whether this write actually caused a change inside of the `A`.
+    ///
+    /// - Parameters:
+    ///   - newValue: the value to potentially write. This value will be written if `!=` returns `true` when evaluated with the current value of the receiver at `keyPath`, and `newValue`, as arguments
+    ///   - keyPath: the keyPath at which to potentially write a new value
     mutating func write<V>(_ newValue: V, at keyPath: WritableKeyPath<A, V>) where V: Equatable {
         self = flatMap(
             Changeable.write(
                 newValue,
-                at: keyPath))
+                at: keyPath
+            )
+        )
     }
 
+    /// write a `newValue` of type `V` at the keyPath `keyPath` in a receiver. As `self` is a value of type `Changeable<A>`, `self.hasChanged` will be updated to reflect whether this write actually caused a change inside of the `A`. The binary function `shouldChange` will be used to determine whether or not to write `newValue`.
+    ///
+    /// - Parameters:
+    ///   - newValue: the value to potentially write. This value will be written if `shouldChange` returns `true` when evaluated with the current value of the receiver at `keyPath`, and `newValue`, as arguments
+    ///   - keyPath: the keyPath at which to potentially write a new value
+    ///   - shouldChange: a binary function to determine whether `newValue` should be written. `newValue` will be written if this function returns `true` when evaluated with the current value of the receiver at `keyPath`, and `newValue`, as arguments
     mutating func write<V>(
         _ newValue: V,
         at keyPath: WritableKeyPath<A, V>,
@@ -187,6 +200,8 @@ public extension Changeable {
             Changeable.write(
                 newValue,
                 at: keyPath,
-                shouldChange: shouldChange))
+                shouldChange: shouldChange
+            )
+        )
     }
 }

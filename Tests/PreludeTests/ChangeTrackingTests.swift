@@ -10,7 +10,7 @@
 @testable import Prelude
 import XCTest
 
-class ChangeTrackingTests: XCTestCase {
+final class ChangeTrackingTests: XCTestCase {
     func testHasChangedDefaultsToFalse() {
         XCTAssertFalse(Changeable(value: "foo").hasChanged)
     }
