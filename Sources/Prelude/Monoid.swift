@@ -19,7 +19,7 @@ public protocol Monoid: Semigroup {
 }
 
 public extension Sequence where Element: Monoid {
-    var concat: Element {
+    func concat() -> Element {
         return reduce(.empty, <>)
     }
 }
@@ -71,6 +71,8 @@ public struct First<A>: Semigroup {
     }
 }
 
+extension First: Equatable where A: Equatable { }
+
 /// wrapper for any value, with a `<>` implementation that always take the right-hand side
 public struct Last<A>: Semigroup {
     public let value: A
@@ -83,6 +85,8 @@ public struct Last<A>: Semigroup {
         return keep
     }
 }
+
+extension Last: Equatable where A: Equatable { }
 
 // MARK: - optional
 
