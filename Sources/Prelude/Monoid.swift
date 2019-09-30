@@ -36,6 +36,19 @@ extension Array: Monoid {
     }
 }
 
+// TODO: test this instance
+extension Dictionary: Semigroup where Value: Semigroup {
+    public static func <>(_ lhs: Dictionary, _ rhs: Dictionary) -> Dictionary {
+        return lhs.merging(rhs, uniquingKeysWith: <>)
+    }
+}
+
+extension Dictionary: Monoid where Value: Semigroup {
+    public static var empty: Dictionary {
+        return [:]
+    }
+}
+
 extension String: Monoid {
     public static var empty: String {
         return ""
@@ -73,7 +86,7 @@ public struct First<A>: Semigroup {
 
 extension First: Equatable where A: Equatable { }
 
-/// wrapper for any value, with a `<>` implementation that always take the right-hand side
+/// wrapper for any value, with a `<>` implementation that always takes the right-hand side
 public struct Last<A>: Semigroup {
     public let value: A
 
