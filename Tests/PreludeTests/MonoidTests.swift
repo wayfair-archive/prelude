@@ -100,6 +100,32 @@ final class SemigroupMonoidConformanceTests: XCTestCase {
     }
 }
 
+final class DictionaryMonoidConformanceTests: XCTestCase {
+    func testCombine() {
+        let val1: [Int: BoolAnyS] = [1: .init(boolValue: false), 2: .init(boolValue: false)]
+        let val2: [Int: BoolAnyS] = [1: .init(boolValue: false), 2: .init(boolValue: true)]
+        let val3: [Int: BoolAnyS] = [1: .init(boolValue: false), 2: .init(boolValue: false)]
+        
+        XCTAssertEqual(
+            [1: false, 2: true],
+            (val1 <> val2 <> val3).mapValues { $0.boolValue }
+        )
+    }
+
+    func testIdentity() {
+        let myVal: [Int: BoolAnyS] = [1: .init(boolValue: true), 2: .init(boolValue: false), 99: .init(boolValue: true)]
+
+        XCTAssertEqual(
+            [1: true, 2: false, 99: true],
+            (myVal <> .empty).mapValues { $0.boolValue }
+        )
+        XCTAssertEqual(
+            [1: true, 2: false, 99: true],
+            (.empty <> myVal).mapValues { $0.boolValue }
+        )
+    }
+}
+
 private struct BoolAnyM { let boolValue: Bool }
 
 extension BoolAnyM: Monoid {

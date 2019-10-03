@@ -36,7 +36,6 @@ extension Array: Monoid {
     }
 }
 
-// TODO: test this instance
 extension Dictionary: Semigroup where Value: Semigroup {
     public static func <>(_ lhs: Dictionary, _ rhs: Dictionary) -> Dictionary {
         return lhs.merging(rhs, uniquingKeysWith: <>)
