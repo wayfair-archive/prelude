@@ -30,6 +30,7 @@ Carthage/
 # Swift Package Manager
 #
 .build
+.swiftpm/
 
 # Jazzy
 #

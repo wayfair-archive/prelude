@@ -31,12 +31,3 @@ public extension Sequence {
         }
     }
 }
-
-#if swift(>=4.1.50)
-#else
-extension Bool {
-    mutating func toggle() {
-        self = !self
-    }
-}
-#endif
