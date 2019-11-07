@@ -10,6 +10,55 @@
 @testable import Prelude
 import XCTest
 
+final class ReducerETests: XCTestCase {
+    private let appendStrings = ReducerE<String, String, [Int]> { string, item in
+        string += item
+        return [1]
+    }
+
+    func testReducerUpdate() {
+        var result = "ok"
+        let effect = appendStrings.updateAccumulatingResult(&result, "foo")
+        XCTAssertEqual("okfoo", result)
+        XCTAssertEqual([1], effect)
+    }
+
+    func testReducerNext() {
+        let (result, effect) = appendStrings.next("ok", "foo")
+        XCTAssertEqual("okfoo", result)
+        XCTAssertEqual([1], effect)
+    }
+
+    func testReducerFromNextPartialResult() {
+        let reducer = ReducerE<String, String, [Int]>.nextPartialResult { acc, el in
+            (acc + el, [1])
+        }
+        var result = "ok"
+        let effect = reducer.updateAccumulatingResult(&result, "foo")
+        XCTAssertEqual("okfoo", result)
+        XCTAssertEqual([1], effect)
+    }
+
+    func testReducerCombine() {
+        let reducer1 = ReducerE<String, String, [Int]> { result, el in
+            result += el
+            return [1, 2]
+        }
+        let reducer2 = ReducerE<String, String, [Int]> { result, el in
+            result += el.uppercased()
+            return [3, 4]
+        }
+        let reducer3 = ReducerE<String, String, [Int]> { result, _ in
+            result += "!"
+            return [99]
+        }
+        var result = "ok"
+        let effect = (reducer1 <> reducer2 <> reducer3).updateAccumulatingResult(&result, "foo")
+        XCTAssertEqual("okfooFOO!", result)
+        XCTAssertEqual([1, 2, 3, 4, 99], effect)
+    }
+}
+
 final class ReducersTests: XCTestCase {
     private let appendStrings = Reducer<String, String> { string, item in
         string += item
