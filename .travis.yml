@@ -4,7 +4,7 @@ xcode_project: Prelude.xcodeproj
 
 matrix:
   include:
-    - xcode_scheme: Prelude iOS
+    - xcode_scheme: Prelude-Package
       xcode_destination: platform=iOS Simulator,OS=13.3,name=iPhone 11
-    - xcode_scheme: Prelude macOS
+    - xcode_scheme: Prelude-Package
       xcode_destination: platform=OS X,arch=x86_64

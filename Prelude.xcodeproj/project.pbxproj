@@ -148,8 +148,8 @@
       "OBJ_29" = {
          isa = "PBXGroup";
          children = (
-            "Prelude::Prelude::Product",
-            "Prelude::PreludeTests::Product"
+            "Prelude::PreludeTests::Product",
+            "Prelude::Prelude::Product"
          );
          name = "Products";
          path = "";
