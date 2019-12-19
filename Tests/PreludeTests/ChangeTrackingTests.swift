@@ -92,6 +92,9 @@ final class ChangeTrackingTests: XCTestCase {
         let value = pure(incrementAndShout) <*> pure(2)
         XCTAssertFalse(value.hasChanged)
         XCTAssertEqual("3!", value.value)
+
+        // double-check that `dynamicMemberLookup` is working; this should call through to `String`
+        XCTAssertEqual(2, value.count)
     }
 
     func testApply2() {

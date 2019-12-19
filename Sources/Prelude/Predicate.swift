@@ -15,29 +15,29 @@ public struct Predicate<A> {
 
 public extension Predicate {
     func intersection(_ other: Predicate) -> Predicate {
-        return .init { self.contains($0) && other.contains($0) }
+        .init { self.contains($0) && other.contains($0) }
     }
 
     func subtracting(_ other: Predicate) -> Predicate {
-        return intersection(other.complement)
+        intersection(other.complement)
     }
 
     func symmetricDifference(_ other: Predicate) -> Predicate {
-        return self.subtracting(other).union(other.subtracting(self))
+        subtracting(other).union(other.subtracting(self))
     }
 
     func union(_ other: Predicate) -> Predicate {
-        return .init { self.contains($0) || other.contains($0) }
+        .init { self.contains($0) || other.contains($0) }
     }
 }
 
 public extension Predicate {
     var complement: Predicate<A> {
-        return .init { !self.contains($0) }
+        .init { !self.contains($0) }
     }
 
     func pullback<B>(_ transform: @escaping (B) -> A) -> Predicate<B> {
-        return .init { self.contains(transform($0)) }
+        .init { self.contains(transform($0)) }
     }
 }
 
@@ -45,10 +45,10 @@ public extension Predicate {
 
 extension Predicate: Monoid {
     public static var empty: Predicate {
-        return .init { _ in true }
+        .init { _ in true }
     }
 
     public static func <>(_ lhs: Predicate, _ rhs: Predicate) -> Predicate {
-        return lhs.intersection(rhs)
+        lhs.intersection(rhs)
     }
 }
