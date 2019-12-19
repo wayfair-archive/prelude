@@ -1,6 +1,6 @@
 # Prelude
 
-[![Build Status](https://travis-ci.org/wayfair/prelude.svg?branch=master)](https://travis-ci.org/wayfair/prelude)
+[![Actions Status](https://github.com/wayfair/prelude/workflows/Run%20Tests/badge.svg?branch=master)](https://github.com/wayfair/prelude/actions)
 
 `Prelude` is a library, developed at [Wayfair](https://www.wayfair.com), for functional programming in Swift. We use this library in [our apps](https://itunes.apple.com/us/developer/wayfair-llc/id525522335) to build features in a functional style.
 
