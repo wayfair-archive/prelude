@@ -2,7 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:Prelude.xcodeproj">
+      location = "group:">
+   </FileRef>
+   <FileRef
+      location = "group:Example/DummyFramework/DummyFramework.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Example/Prelude.playground">
