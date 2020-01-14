@@ -35,3 +35,7 @@ Carthage/
 # Jazzy
 #
 .docs/
+
+# macOS
+#
+.DS_Store

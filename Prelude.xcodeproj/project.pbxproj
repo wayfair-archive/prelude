@@ -1,675 +1,751 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 50;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		244559F92229775A00CFC0EB /* RefinementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244559F82229775A00CFC0EB /* RefinementsTests.swift */; };
-		244559FA2229775A00CFC0EB /* RefinementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244559F82229775A00CFC0EB /* RefinementsTests.swift */; };
-		249A08412226F8860060AE5D /* Refinements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A08402226F8860060AE5D /* Refinements.swift */; };
-		249A08422226F8860060AE5D /* Refinements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A08402226F8860060AE5D /* Refinements.swift */; };
-		249EE629222DC02200F93941 /* Nat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249EE628222DC02200F93941 /* Nat.swift */; };
-		249EE62A222DC02200F93941 /* Nat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249EE628222DC02200F93941 /* Nat.swift */; };
-		24F05CFF223074E3003502D0 /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F05CFE223074E3003502D0 /* Predicate.swift */; };
-		24F05D00223074E3003502D0 /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F05CFE223074E3003502D0 /* Predicate.swift */; };
-		24F05D022231581F003502D0 /* PredicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F05D012231581F003502D0 /* PredicateTests.swift */; };
-		24F05D032231581F003502D0 /* PredicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F05D012231581F003502D0 /* PredicateTests.swift */; };
-		24F1FA6B22F3183500404CAB /* MonoidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1FA6A22F3183500404CAB /* MonoidTests.swift */; };
-		24F1FA6C22F3183500404CAB /* MonoidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F1FA6A22F3183500404CAB /* MonoidTests.swift */; };
-		66541CC5217F6698001E088D /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Prelude.framework */; };
-		6657D9B121AFA8960065E051 /* ChangeTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */; };
-		6657D9B221AFA8960065E051 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0E21AC788200DF98C0 /* Monoid.swift */; };
-		6657D9B321AFA8960065E051 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1021AC788200DF98C0 /* Operators.swift */; };
-		6657D9B421AFA8960065E051 /* Prelude.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE1E1321AC788200DF98C0 /* Prelude.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6657D9B521AFA8960065E051 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0F21AC788200DF98C0 /* Prelude.swift */; };
-		6657D9B621AFA8960065E051 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1221AC788200DF98C0 /* Reducers.swift */; };
-		6657D9B721AFA8960065E051 /* Sequence+Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */; };
-		6657D9C121AFA9850065E051 /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6657D9A721AFA0B80065E051 /* Prelude.framework */; };
-		6657D9C721AFA99B0065E051 /* ChangeTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */; };
-		6657D9C821AFA99B0065E051 /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */; };
-		6657D9C921AFA99B0065E051 /* ReducersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */; };
-		6657D9CA21AFA99B0065E051 /* SequenceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */; };
-		66FE1E1521AC788200DF98C0 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0E21AC788200DF98C0 /* Monoid.swift */; };
-		66FE1E1621AC788200DF98C0 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E0F21AC788200DF98C0 /* Prelude.swift */; };
-		66FE1E1721AC788200DF98C0 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1021AC788200DF98C0 /* Operators.swift */; };
-		66FE1E1821AC788200DF98C0 /* ChangeTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */; };
-		66FE1E1921AC788200DF98C0 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1221AC788200DF98C0 /* Reducers.swift */; };
-		66FE1E1A21AC788200DF98C0 /* Prelude.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE1E1321AC788200DF98C0 /* Prelude.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66FE1E1B21AC788200DF98C0 /* Sequence+Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */; };
-		66FE1E2021AC78A900DF98C0 /* ChangeTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */; };
-		66FE1E2121AC78A900DF98C0 /* SequenceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */; };
-		66FE1E2221AC78A900DF98C0 /* PreludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */; };
-		66FE1E2321AC78A900DF98C0 /* ReducersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		66541CC6217F6698001E088D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66541CB0217F666E001E088D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66541CBA217F6698001E088D;
-			remoteInfo = Prelude;
-		};
-		6657D9C221AFA9850065E051 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66541CB0217F666E001E088D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6657D9A621AFA0B80065E051;
-			remoteInfo = "Prelude macOS";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		244559F82229775A00CFC0EB /* RefinementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefinementsTests.swift; sourceTree = "<group>"; };
-		249A08402226F8860060AE5D /* Refinements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refinements.swift; sourceTree = "<group>"; };
-		249EE628222DC02200F93941 /* Nat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nat.swift; sourceTree = "<group>"; };
-		24F05CFE223074E3003502D0 /* Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
-		24F05D012231581F003502D0 /* PredicateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredicateTests.swift; sourceTree = "<group>"; };
-		24F1FA6A22F3183500404CAB /* MonoidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoidTests.swift; sourceTree = "<group>"; };
-		66541CBB217F6698001E088D /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66541CC4217F6698001E088D /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6657D9A721AFA0B80065E051 /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6657D9BC21AFA9850065E051 /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66FE1E0E21AC788200DF98C0 /* Monoid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
-		66FE1E0F21AC788200DF98C0 /* Prelude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prelude.swift; sourceTree = "<group>"; };
-		66FE1E1021AC788200DF98C0 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
-		66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTracking.swift; sourceTree = "<group>"; };
-		66FE1E1221AC788200DF98C0 /* Reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
-		66FE1E1321AC788200DF98C0 /* Prelude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prelude.h; sourceTree = "<group>"; };
-		66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Prelude.swift"; sourceTree = "<group>"; };
-		66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTrackingTests.swift; sourceTree = "<group>"; };
-		66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceExtensionsTests.swift; sourceTree = "<group>"; };
-		66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreludeTests.swift; sourceTree = "<group>"; };
-		66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducersTests.swift; sourceTree = "<group>"; };
-		79CC1D6A21836FA2000A00C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CompilerWarnings.xcconfig; sourceTree = "<group>"; };
-		79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
-		79CC1D6F21836FA2000A00C2 /* Target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Target.xcconfig; sourceTree = "<group>"; };
-		79CC1D7021836FA2000A00C2 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		79CC1D8C21837BF8000A00C2 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
-		79CC1D8D2183805A000A00C2 /* XCTest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XCTest.xcconfig; sourceTree = "<group>"; };
-		79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Prelude.xcconfig; path = xcconfigs/Prelude.xcconfig; sourceTree = SOURCE_ROOT; };
-		79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PreludeTests.xcconfig; sourceTree = "<group>"; };
-		79E4CF6C21801D4800273142 /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		66541CB8217F6698001E088D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66541CC1217F6698001E088D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66541CC5217F6698001E088D /* Prelude.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6657D9A421AFA0B80065E051 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6657D9B921AFA9850065E051 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6657D9C121AFA9850065E051 /* Prelude.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		66541CAF217F666E001E088D = {
-			isa = PBXGroup;
-			children = (
-				79E4CF92218111DC00273142 /* Sources */,
-				79E4CF8A2180F9A900273142 /* Tests */,
-				66541CBC217F6698001E088D /* Products */,
-				79CC1D6921836FA2000A00C2 /* Supporting Files */,
-				79CC1D6B21836FA2000A00C2 /* xcconfigs */,
-			);
-			sourceTree = "<group>";
-		};
-		66541CBC217F6698001E088D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				66541CBB217F6698001E088D /* Prelude.framework */,
-				66541CC4217F6698001E088D /* PreludeTests.xctest */,
-				6657D9A721AFA0B80065E051 /* Prelude.framework */,
-				6657D9BC21AFA9850065E051 /* PreludeTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		66541CC8217F6698001E088D /* PreludeTests */ = {
-			isa = PBXGroup;
-			children = (
-				66FE1E1C21AC78A900DF98C0 /* ChangeTrackingTests.swift */,
-				24F1FA6A22F3183500404CAB /* MonoidTests.swift */,
-				24F05D012231581F003502D0 /* PredicateTests.swift */,
-				66FE1E1E21AC78A900DF98C0 /* PreludeTests.swift */,
-				66FE1E1F21AC78A900DF98C0 /* ReducersTests.swift */,
-				244559F82229775A00CFC0EB /* RefinementsTests.swift */,
-				66FE1E1D21AC78A900DF98C0 /* SequenceExtensionsTests.swift */,
-				79E4CF6C21801D4800273142 /* Supporting Files */,
-			);
-			path = PreludeTests;
-			sourceTree = "<group>";
-		};
-		79CC1D6921836FA2000A00C2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				79CC1D6A21836FA2000A00C2 /* Info.plist */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		79CC1D6B21836FA2000A00C2 /* xcconfigs */ = {
-			isa = PBXGroup;
-			children = (
-				79CC1D6C21836FA2000A00C2 /* Shared */,
-				79CC1D7021836FA2000A00C2 /* Project.xcconfig */,
-				79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */,
-				79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */,
-			);
-			path = xcconfigs;
-			sourceTree = "<group>";
-		};
-		79CC1D6C21836FA2000A00C2 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */,
-				79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */,
-				79CC1D6F21836FA2000A00C2 /* Target.xcconfig */,
-				79CC1D8C21837BF8000A00C2 /* Framework.xcconfig */,
-				79CC1D8D2183805A000A00C2 /* XCTest.xcconfig */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		79E4CF8A2180F9A900273142 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				66541CC8217F6698001E088D /* PreludeTests */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		79E4CF92218111DC00273142 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				79E4CF93218111F700273142 /* Prelude */,
-			);
-			name = Sources;
-			sourceTree = "<group>";
-		};
-		79E4CF93218111F700273142 /* Prelude */ = {
-			isa = PBXGroup;
-			children = (
-				66FE1E1121AC788200DF98C0 /* ChangeTracking.swift */,
-				66FE1E0E21AC788200DF98C0 /* Monoid.swift */,
-				249EE628222DC02200F93941 /* Nat.swift */,
-				66FE1E1021AC788200DF98C0 /* Operators.swift */,
-				24F05CFE223074E3003502D0 /* Predicate.swift */,
-				66FE1E1321AC788200DF98C0 /* Prelude.h */,
-				66FE1E0F21AC788200DF98C0 /* Prelude.swift */,
-				66FE1E1221AC788200DF98C0 /* Reducers.swift */,
-				249A08402226F8860060AE5D /* Refinements.swift */,
-				66FE1E1421AC788200DF98C0 /* Sequence+Prelude.swift */,
-			);
-			name = Prelude;
-			path = Sources/Prelude;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		66541CB6217F6698001E088D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66FE1E1A21AC788200DF98C0 /* Prelude.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6657D9A221AFA0B80065E051 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6657D9B421AFA8960065E051 /* Prelude.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		66541CBA217F6698001E088D /* Prelude iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Prelude iOS" */;
-			buildPhases = (
-				66541CB6217F6698001E088D /* Headers */,
-				66541CB7217F6698001E088D /* Sources */,
-				66541CB8217F6698001E088D /* Frameworks */,
-				66541CB9217F6698001E088D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Prelude iOS";
-			productName = Prelude;
-			productReference = 66541CBB217F6698001E088D /* Prelude.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		66541CC3217F6698001E088D /* PreludeTests iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "PreludeTests iOS" */;
-			buildPhases = (
-				66541CC0217F6698001E088D /* Sources */,
-				66541CC1217F6698001E088D /* Frameworks */,
-				66541CC2217F6698001E088D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66541CC7217F6698001E088D /* PBXTargetDependency */,
-			);
-			name = "PreludeTests iOS";
-			productName = PreludeTests;
-			productReference = 66541CC4217F6698001E088D /* PreludeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		6657D9A621AFA0B80065E051 /* Prelude macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6657D9AC21AFA0B80065E051 /* Build configuration list for PBXNativeTarget "Prelude macOS" */;
-			buildPhases = (
-				6657D9A221AFA0B80065E051 /* Headers */,
-				6657D9A321AFA0B80065E051 /* Sources */,
-				6657D9A421AFA0B80065E051 /* Frameworks */,
-				6657D9A521AFA0B80065E051 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Prelude macOS";
-			productName = "Prelude macOS";
-			productReference = 6657D9A721AFA0B80065E051 /* Prelude.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		6657D9BB21AFA9850065E051 /* PreludeTests macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6657D9C421AFA9850065E051 /* Build configuration list for PBXNativeTarget "PreludeTests macOS" */;
-			buildPhases = (
-				6657D9B821AFA9850065E051 /* Sources */,
-				6657D9B921AFA9850065E051 /* Frameworks */,
-				6657D9BA21AFA9850065E051 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6657D9C321AFA9850065E051 /* PBXTargetDependency */,
-			);
-			name = "PreludeTests macOS";
-			productName = "PreludeTests macOS";
-			productReference = 6657D9BC21AFA9850065E051 /* PreludeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		66541CB0217F666E001E088D /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1020;
-				TargetAttributes = {
-					66541CBA217F6698001E088D = {
-						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1020;
-					};
-					66541CC3217F6698001E088D = {
-						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1020;
-					};
-					6657D9A621AFA0B80065E051 = {
-						CreatedOnToolsVersion = 10.1;
-					};
-					6657D9BB21AFA9850065E051 = {
-						CreatedOnToolsVersion = 10.1;
-					};
-				};
-			};
-			buildConfigurationList = 66541CB3217F666E001E088D /* Build configuration list for PBXProject "Prelude" */;
-			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 66541CAF217F666E001E088D;
-			productRefGroup = 66541CBC217F6698001E088D /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				66541CBA217F6698001E088D /* Prelude iOS */,
-				6657D9A621AFA0B80065E051 /* Prelude macOS */,
-				66541CC3217F6698001E088D /* PreludeTests iOS */,
-				6657D9BB21AFA9850065E051 /* PreludeTests macOS */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		66541CB9217F6698001E088D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66541CC2217F6698001E088D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6657D9A521AFA0B80065E051 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6657D9BA21AFA9850065E051 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		66541CB7217F6698001E088D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66FE1E1821AC788200DF98C0 /* ChangeTracking.swift in Sources */,
-				66FE1E1921AC788200DF98C0 /* Reducers.swift in Sources */,
-				66FE1E1B21AC788200DF98C0 /* Sequence+Prelude.swift in Sources */,
-				66FE1E1521AC788200DF98C0 /* Monoid.swift in Sources */,
-				66FE1E1621AC788200DF98C0 /* Prelude.swift in Sources */,
-				249A08412226F8860060AE5D /* Refinements.swift in Sources */,
-				66FE1E1721AC788200DF98C0 /* Operators.swift in Sources */,
-				24F05CFF223074E3003502D0 /* Predicate.swift in Sources */,
-				249EE629222DC02200F93941 /* Nat.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66541CC0217F6698001E088D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66FE1E2121AC78A900DF98C0 /* SequenceExtensionsTests.swift in Sources */,
-				66FE1E2021AC78A900DF98C0 /* ChangeTrackingTests.swift in Sources */,
-				66FE1E2321AC78A900DF98C0 /* ReducersTests.swift in Sources */,
-				244559F92229775A00CFC0EB /* RefinementsTests.swift in Sources */,
-				66FE1E2221AC78A900DF98C0 /* PreludeTests.swift in Sources */,
-				24F1FA6B22F3183500404CAB /* MonoidTests.swift in Sources */,
-				24F05D022231581F003502D0 /* PredicateTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6657D9A321AFA0B80065E051 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6657D9B121AFA8960065E051 /* ChangeTracking.swift in Sources */,
-				6657D9B621AFA8960065E051 /* Reducers.swift in Sources */,
-				6657D9B721AFA8960065E051 /* Sequence+Prelude.swift in Sources */,
-				6657D9B521AFA8960065E051 /* Prelude.swift in Sources */,
-				6657D9B221AFA8960065E051 /* Monoid.swift in Sources */,
-				249A08422226F8860060AE5D /* Refinements.swift in Sources */,
-				6657D9B321AFA8960065E051 /* Operators.swift in Sources */,
-				24F05D00223074E3003502D0 /* Predicate.swift in Sources */,
-				249EE62A222DC02200F93941 /* Nat.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6657D9B821AFA9850065E051 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6657D9CA21AFA99B0065E051 /* SequenceExtensionsTests.swift in Sources */,
-				6657D9C921AFA99B0065E051 /* ReducersTests.swift in Sources */,
-				6657D9C721AFA99B0065E051 /* ChangeTrackingTests.swift in Sources */,
-				244559FA2229775A00CFC0EB /* RefinementsTests.swift in Sources */,
-				6657D9C821AFA99B0065E051 /* PreludeTests.swift in Sources */,
-				24F1FA6C22F3183500404CAB /* MonoidTests.swift in Sources */,
-				24F05D032231581F003502D0 /* PredicateTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		66541CC7217F6698001E088D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66541CBA217F6698001E088D /* Prelude iOS */;
-			targetProxy = 66541CC6217F6698001E088D /* PBXContainerItemProxy */;
-		};
-		6657D9C321AFA9850065E051 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6657D9A621AFA0B80065E051 /* Prelude macOS */;
-			targetProxy = 6657D9C221AFA9850065E051 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		66541CB4217F666E001E088D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-			};
-			name = Debug;
-		};
-		66541CB5217F666E001E088D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
-			buildSettings = {
-				SWIFT_COMPILATION_MODE = wholemodule;
-			};
-			name = Release;
-		};
-		66541CCD217F6698001E088D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-			};
-			name = Debug;
-		};
-		66541CCE217F6698001E088D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-			};
-			name = Release;
-		};
-		66541CCF217F6698001E088D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		66541CD0217F6698001E088D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-			};
-			name = Release;
-		};
-		6657D9AD21AFA0B80065E051 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-			};
-			name = Debug;
-		};
-		6657D9AE21AFA0B80065E051 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Prelude.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-			};
-			name = Release;
-		};
-		6657D9C521AFA9850065E051 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
-			buildSettings = {
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		6657D9C621AFA9850065E051 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* PreludeTests.xcconfig */;
-			buildSettings = {
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		66541CB3217F666E001E088D /* Build configuration list for PBXProject "Prelude" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66541CB4217F666E001E088D /* Debug */,
-				66541CB5217F666E001E088D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Prelude iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66541CCD217F6698001E088D /* Debug */,
-				66541CCE217F6698001E088D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "PreludeTests iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66541CCF217F6698001E088D /* Debug */,
-				66541CD0217F6698001E088D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6657D9AC21AFA0B80065E051 /* Build configuration list for PBXNativeTarget "Prelude macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6657D9AD21AFA0B80065E051 /* Debug */,
-				6657D9AE21AFA0B80065E051 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6657D9C421AFA9850065E051 /* Build configuration list for PBXNativeTarget "PreludeTests macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6657D9C521AFA9850065E051 /* Debug */,
-				6657D9C621AFA9850065E051 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 66541CB0217F666E001E088D /* Project object */;
+   archiveVersion = "1";
+   objectVersion = "46";
+   objects = {
+      "OBJ_1" = {
+         isa = "PBXProject";
+         attributes = {
+            LastSwiftMigration = "9999";
+            LastUpgradeCheck = "9999";
+         };
+         buildConfigurationList = "OBJ_2";
+         compatibilityVersion = "Xcode 3.2";
+         developmentRegion = "en";
+         hasScannedForEncodings = "0";
+         knownRegions = (
+            "en"
+         );
+         mainGroup = "OBJ_5";
+         productRefGroup = "OBJ_29";
+         projectDirPath = ".";
+         targets = (
+            "Prelude::Prelude",
+            "Prelude::SwiftPMPackageDescription",
+            "Prelude::PreludePackageTests::ProductTarget",
+            "Prelude::PreludeTests"
+         );
+      };
+      "OBJ_10" = {
+         isa = "PBXFileReference";
+         path = "ChangeTracking.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_11" = {
+         isa = "PBXFileReference";
+         path = "Monoid.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_12" = {
+         isa = "PBXFileReference";
+         path = "Nat.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_13" = {
+         isa = "PBXFileReference";
+         path = "Operators.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_14" = {
+         isa = "PBXFileReference";
+         path = "Predicate.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_15" = {
+         isa = "PBXFileReference";
+         path = "Prelude.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_16" = {
+         isa = "PBXFileReference";
+         path = "Reducers.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_17" = {
+         isa = "PBXFileReference";
+         path = "Refinements.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_18" = {
+         isa = "PBXFileReference";
+         path = "Sequence+Prelude.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_19" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_20"
+         );
+         name = "Tests";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_2" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_3",
+            "OBJ_4"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_20" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_21",
+            "OBJ_22",
+            "OBJ_23",
+            "OBJ_24",
+            "OBJ_25",
+            "OBJ_26",
+            "OBJ_27",
+            "OBJ_28"
+         );
+         name = "PreludeTests";
+         path = "Tests/PreludeTests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_21" = {
+         isa = "PBXFileReference";
+         path = "ChangeTrackingTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_22" = {
+         isa = "PBXFileReference";
+         path = "MonoidTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_23" = {
+         isa = "PBXFileReference";
+         path = "PredicateTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_24" = {
+         isa = "PBXFileReference";
+         path = "PreludeTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_25" = {
+         isa = "PBXFileReference";
+         path = "ReducersTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_26" = {
+         isa = "PBXFileReference";
+         path = "RefinementsTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_27" = {
+         isa = "PBXFileReference";
+         path = "SequenceExtensionsTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_28" = {
+         isa = "PBXFileReference";
+         path = "XCTestManifests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_29" = {
+         isa = "PBXGroup";
+         children = (
+            "Prelude::Prelude::Product",
+            "Prelude::PreludeTests::Product"
+         );
+         name = "Products";
+         path = "";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OBJ_3" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "NO";
+            DEBUG_INFORMATION_FORMAT = "dwarf";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            ENABLE_NS_ASSERTIONS = "YES";
+            GCC_OPTIMIZATION_LEVEL = "0";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1",
+               "DEBUG=1"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            ONLY_ACTIVE_ARCH = "YES";
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE",
+               "DEBUG"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Debug";
+      };
+      "OBJ_32" = {
+         isa = "PBXFileReference";
+         path = "Prelude.xcworkspace";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_33" = {
+         isa = "PBXFileReference";
+         path = "LICENSE.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_34" = {
+         isa = "PBXFileReference";
+         path = "Makefile";
+         sourceTree = "<group>";
+      };
+      "OBJ_35" = {
+         isa = "PBXFileReference";
+         path = "README.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_37" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_38",
+            "OBJ_39"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_38" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Prelude.xcodeproj/Prelude_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Prelude";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "Prelude";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_39" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Prelude.xcodeproj/Prelude_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Prelude";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "Prelude";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Release";
+      };
+      "OBJ_4" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "YES";
+            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            GCC_OPTIMIZATION_LEVEL = "s";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Release";
+      };
+      "OBJ_40" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_41",
+            "OBJ_42",
+            "OBJ_43",
+            "OBJ_44",
+            "OBJ_45",
+            "OBJ_46",
+            "OBJ_47",
+            "OBJ_48",
+            "OBJ_49"
+         );
+      };
+      "OBJ_41" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_10";
+      };
+      "OBJ_42" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_11";
+      };
+      "OBJ_43" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_12";
+      };
+      "OBJ_44" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_13";
+      };
+      "OBJ_45" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_14";
+      };
+      "OBJ_46" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_15";
+      };
+      "OBJ_47" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_16";
+      };
+      "OBJ_48" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_17";
+      };
+      "OBJ_49" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_18";
+      };
+      "OBJ_5" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_6",
+            "OBJ_7",
+            "OBJ_19",
+            "OBJ_29",
+            "OBJ_32",
+            "OBJ_33",
+            "OBJ_34",
+            "OBJ_35"
+         );
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_50" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_52" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_53",
+            "OBJ_54"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_53" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Users/ptomaselli/Applications/Xcode 11.3.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "5.1"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_54" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Users/ptomaselli/Applications/Xcode 11.3.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "5.1"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Release";
+      };
+      "OBJ_55" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_56"
+         );
+      };
+      "OBJ_56" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_58" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_59",
+            "OBJ_60"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_59" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_6" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         path = "Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_60" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_61" = {
+         isa = "PBXTargetDependency";
+         target = "Prelude::PreludeTests";
+      };
+      "OBJ_63" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_64",
+            "OBJ_65"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_64" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Prelude.xcodeproj/PreludeTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "PreludeTests";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_65" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Prelude.xcodeproj/PreludeTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "PreludeTests";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Release";
+      };
+      "OBJ_66" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_67",
+            "OBJ_68",
+            "OBJ_69",
+            "OBJ_70",
+            "OBJ_71",
+            "OBJ_72",
+            "OBJ_73",
+            "OBJ_74"
+         );
+      };
+      "OBJ_67" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_21";
+      };
+      "OBJ_68" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_22";
+      };
+      "OBJ_69" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_23";
+      };
+      "OBJ_7" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_8"
+         );
+         name = "Sources";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_70" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_24";
+      };
+      "OBJ_71" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_25";
+      };
+      "OBJ_72" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_26";
+      };
+      "OBJ_73" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_27";
+      };
+      "OBJ_74" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_28";
+      };
+      "OBJ_75" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_76"
+         );
+      };
+      "OBJ_76" = {
+         isa = "PBXBuildFile";
+         fileRef = "Prelude::Prelude::Product";
+      };
+      "OBJ_77" = {
+         isa = "PBXTargetDependency";
+         target = "Prelude::Prelude";
+      };
+      "OBJ_8" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_9",
+            "OBJ_10",
+            "OBJ_11",
+            "OBJ_12",
+            "OBJ_13",
+            "OBJ_14",
+            "OBJ_15",
+            "OBJ_16",
+            "OBJ_17",
+            "OBJ_18"
+         );
+         name = "Prelude";
+         path = "Sources/Prelude";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_9" = {
+         isa = "PBXFileReference";
+         path = "Prelude.h";
+         sourceTree = "<group>";
+      };
+      "Prelude::Prelude" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_37";
+         buildPhases = (
+            "OBJ_40",
+            "OBJ_50"
+         );
+         dependencies = (
+         );
+         name = "Prelude";
+         productName = "Prelude";
+         productReference = "Prelude::Prelude::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "Prelude::Prelude::Product" = {
+         isa = "PBXFileReference";
+         path = "Prelude.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "Prelude::PreludePackageTests::ProductTarget" = {
+         isa = "PBXAggregateTarget";
+         buildConfigurationList = "OBJ_58";
+         buildPhases = (
+         );
+         dependencies = (
+            "OBJ_61"
+         );
+         name = "PreludePackageTests";
+         productName = "PreludePackageTests";
+      };
+      "Prelude::PreludeTests" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_63";
+         buildPhases = (
+            "OBJ_66",
+            "OBJ_75"
+         );
+         dependencies = (
+            "OBJ_77"
+         );
+         name = "PreludeTests";
+         productName = "PreludeTests";
+         productReference = "Prelude::PreludeTests::Product";
+         productType = "com.apple.product-type.bundle.unit-test";
+      };
+      "Prelude::PreludeTests::Product" = {
+         isa = "PBXFileReference";
+         path = "PreludeTests.xctest";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "Prelude::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_52";
+         buildPhases = (
+            "OBJ_55"
+         );
+         dependencies = (
+         );
+         name = "PreludePackageDescription";
+         productName = "PreludePackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+   };
+   rootObject = "OBJ_1";
 }

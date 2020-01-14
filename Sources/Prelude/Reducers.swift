@@ -73,7 +73,7 @@ public extension Sequence {
 extension Reducer: Monoid {
     /// the identity `Reducer`. This reducer ignores its parameters and performs no mutation to the accumulator
     public static var empty: Reducer<A, X> {
-        return .init { _, _ in }
+        .init { _, _ in }
     }
 
     /// `Semigroup` combine for reducers. Two reducers could be said to be combined by wrapping them in a new reducer that runs each of their reduction operations in sequence
@@ -83,6 +83,6 @@ extension Reducer: Monoid {
     ///   - rhs: another reducer
     /// - Returns: a reducer that for each input, first runs `lhs`, then runs `rhs`
     public static func <><A, X>(_ lhs: Reducer<A, X>, _ rhs: Reducer<A, X>) -> Reducer<A, X> {
-        return lhs.followed(by: rhs)
+        lhs.followed(by: rhs)
     }
 }

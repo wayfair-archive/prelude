@@ -55,14 +55,14 @@ public extension Refinement {
     /// - Parameter f: a function that takes a value of type `RefinedType` as a parameter
     /// - Returns: the function provided, wrapped to require this refined type as a parameter
     static func narrow<A>(_ f: @escaping (BaseType) -> A) -> (Refined<BaseType, Self>) -> A {
-        return { refined in f(refined.value) }
+        { refined in f(refined.value) }
     }
     /// convenient way to initialize a value of type `Refined<RefinedType, Self>` given a proposed value. This is equivalent to calling `try? Refined<RefinedType, Self>.init(value)`, but much easier to type
     ///
     /// - Parameter value: the proposed value
     /// - Returns: a value of type `Refined<RefinedType, Self>`, or nil
     static func of(_ value: BaseType) -> Refined<BaseType, Self>? {
-        return try? .init(value)
+        try? .init(value)
     }
 }
 
@@ -83,7 +83,7 @@ public extension Sequence {
     /// - Returns: the result of refining the elements of `self` by `refinement` and discarding those that did not pass
     func refineMap<Rule: Refinement>(
         _ refinement: Rule.Type = Rule.self) -> [Refined<Element, Rule>] where Element == Rule.BaseType {
-        return compactMap(Rule.of)
+        compactMap(Rule.of)
     }
 }
 
@@ -93,7 +93,7 @@ public extension Sequence {
 public enum Both<L: Refinement, R: Refinement>: Refinement where L.BaseType == R.BaseType {
     public typealias RefinedType = L.BaseType
     public static func isValid(_ value: RefinedType) -> Bool {
-        return L.predicate.intersection(R.predicate).contains(value)
+        L.predicate.intersection(R.predicate).contains(value)
     }
 }
 
@@ -125,7 +125,7 @@ public func right<A, L, R>(_ refined: Refined<A, Both<L, R>>) -> Refined<A, R> {
 public enum Not<Rule: Refinement>: Refinement {
     public typealias RefinedType = Rule.BaseType
     public static func isValid(_ value: Rule.BaseType) -> Bool {
-        return Rule.predicate.complement.contains(value)
+        Rule.predicate.complement.contains(value)
     }
 }
 
@@ -135,7 +135,7 @@ public enum Not<Rule: Refinement>: Refinement {
 public enum OneOf<L: Refinement, R: Refinement>: Refinement where L.BaseType == R.BaseType {
     public typealias RefinedType = L.BaseType
     public static func isValid(_ value: RefinedType) -> Bool {
-        return L.predicate.union(R.predicate).contains(value)
+        L.predicate.union(R.predicate).contains(value)
     }
 }
 
@@ -144,7 +144,7 @@ public enum OneOf<L: Refinement, R: Refinement>: Refinement where L.BaseType == 
 /// - Parameter refined: a value that is refined by the disjunction of two rules
 /// - Returns: the same value, refined only by the rule on the left, or nil
 public func left<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, L>? {
-    return L.of(refined.value)
+    L.of(refined.value)
 }
 
 /// given a value that is refined by a `OneOf<L, R>` (either the refinement `L`, or the refinement `R`), produce a value that is just refined by `R`. This function returns nil if the underlying value does not satisfy `R`
@@ -152,7 +152,7 @@ public func left<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, L>? 
 /// - Parameter refined: a value that is refined by the disjunction of two rules
 /// - Returns: the same value, refined only by the rule on the right, or nil
 public func right<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, R>? {
-    return R.of(refined.value)
+    R.of(refined.value)
 }
 
 /// given a value that is refined by a `OneOf<L, R>` (either the refinement `L`, or the refinement `R`), produce a value that is refined by both (`Both<L, R>`). This function returns nil if the underlying value does not satisfy both `L` and `R`
@@ -160,7 +160,7 @@ public func right<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, R>?
 /// - Parameter refined: a value that is refined by the disjunction of two rules
 /// - Returns: the same value, refined by both of the rules, or nil
 public func both<A, L, R>(_ refined: Refined<A, OneOf<L, R>>) -> Refined<A, Both<L, R>>? {
-    return Both<L, R>.of(refined.value)
+    Both<L, R>.of(refined.value)
 }
 
 // MARK: - Int
@@ -175,7 +175,7 @@ public extension Int {
     enum LessThan<N: Nat>: Refinement {
         public typealias RefinedType = Int
         public static func isValid(_ value: Int) -> Bool {
-            return value < N.intValue
+            value < N.intValue
         }
     }
 
@@ -190,7 +190,7 @@ public extension String {
     enum NonEmpty: Refinement {
         public typealias RefinedType = String
         public static func isValid(_ value: String) -> Bool {
-            return !value.isEmpty
+            !value.isEmpty
         }
     }
 }

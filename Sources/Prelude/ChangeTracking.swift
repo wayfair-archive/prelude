@@ -8,13 +8,17 @@
 //
 
 /// a struct that can be used to keep track of whether or not a wrapped value has been changed
-public struct Changeable<A> {
+@dynamicMemberLookup public struct Changeable<A> {
     public let hasChanged: Bool
     public let value: A
 
     public init(hasChanged: Bool = false, value: A) {
         self.hasChanged = hasChanged
         self.value = value
+    }
+
+    subscript<T>(dynamicMember keyPath: KeyPath<A, T>) -> T {
+        value[keyPath: keyPath]
     }
 }
 
@@ -26,7 +30,7 @@ public extension Changeable {
     /// - Parameter transform: a transform function on `A` (the value contained by this instance)
     /// - Returns: a new `Changeable` value where `Changeable.getter:hasChanged` will be `true` if this instance has already changed
     func map<B>(_ transform: (A) -> B) -> Changeable<B> {
-        return .init(hasChanged: hasChanged, value: transform(value))
+        .init(hasChanged: hasChanged, value: transform(value))
     }
 
     /// given a `Changeable` wrapper (`self`) and a transformation function that consumes the inner value (`A`) which may fail, return a new `Changeable` value containing the transformed value and the current `hasChanged` flag, carried forward, or `nil`, if the transformation failed
@@ -46,7 +50,7 @@ public extension Changeable {
 /// - Parameter value: a value of type `A`
 /// - Returns: a pure value of type `Changeable<A>`
 public func pure<A>(_ value: A) -> Changeable<A> {
-    return .init(hasChanged: false, value: value)
+    .init(hasChanged: false, value: value)
 }
 
 /// `<*>` for Changeable values. Given a transform function of type `Changeable<(A) -> B>` and a value of type `Changeable<A>`, return a new value of type `Changeable<B>`
@@ -71,7 +75,7 @@ public func <*><A, B>(_ transform: Changeable<(A) -> B>, _ value: Changeable<A>)
 ///   - second: an argument of type `B`
 /// - Returns: a value of type `Changeable<C>`
 public func liftA<A, B, C>(_ f: @escaping (A) -> (B) -> C, _ first: Changeable<A>, _ second: Changeable<B>) -> Changeable<C> {
-    return pure(f) <*> first <*> second
+    pure(f) <*> first <*> second
 }
 
 /// `liftA` for Changeable values, with built-in currying. Given a non-curried function of two arguments (`f`), and two `Changeable` parameters (`first` and `second`), return a new value that is the result of currying the function, lifting the result, and applying the two arguments in order
@@ -82,7 +86,7 @@ public func liftA<A, B, C>(_ f: @escaping (A) -> (B) -> C, _ first: Changeable<A
 ///   - second: an argument of type `B`
 /// - Returns: a value of type `Changeable<C>`
 public func liftA<A, B, C>(_ f: @escaping (A, B) -> C, _ first: Changeable<A>, _ second: Changeable<B>) -> Changeable<C> {
-    return liftA(curry(f), first, second)
+    liftA(curry(f), first, second)
 }
 
 /// `liftA` for Changeable values. Given a curried function of three arguments (`f`), and three `Changeable` parameters (`first`, `second`, and `third`), return a new value that is the result of lifting the function and applying the three arguments in order
@@ -94,7 +98,7 @@ public func liftA<A, B, C>(_ f: @escaping (A, B) -> C, _ first: Changeable<A>, _
 ///   - third: an argument of type `C`
 /// - Returns: a value of type `Changeable<D>`
 public func liftA<A, B, C, D>(_ f: @escaping (A) -> (B) -> (C) -> D, _ first: Changeable<A>, _ second: Changeable<B>, _ third: Changeable<C>) -> Changeable<D> {
-    return pure(f) <*> first <*> second <*> third
+    pure(f) <*> first <*> second <*> third
 }
 
 /// `liftA` for Changeable values, with built-in currying. Given a non-curried function of two arguments (`f`), and three `Changeable` parameters (`first`, `second`, and `third`), return a new value that is the result of currying the function, lifting the result, and applying the three arguments in order
@@ -106,7 +110,7 @@ public func liftA<A, B, C, D>(_ f: @escaping (A) -> (B) -> (C) -> D, _ first: Ch
 ///   - third: an argument of type `C`
 /// - Returns: a value of type `Changeable<D>`
 public func liftA<A, B, C, D>(_ f: @escaping (A, B, C) -> D, _ first: Changeable<A>, _ second: Changeable<B>, _ third: Changeable<C>) -> Changeable<D> {
-    return liftA(curry(f), first, second, third)
+    liftA(curry(f), first, second, third)
 }
 
 // MARK: - monad
@@ -129,7 +133,7 @@ public extension Changeable {
 ///   - rhs: a transform function on `A` (the value contained by `lhs`)
 /// - Returns: the result of calling `flatMap` on `lhs` with `rhs`
 public func >>-<A, B>(_ lhs: Changeable<A>, _ rhs: (A) -> Changeable<B>) -> Changeable<B> {
-    return lhs.flatMap(rhs)
+    lhs.flatMap(rhs)
 }
 
 // MARK: - key paths
@@ -145,7 +149,7 @@ public extension Changeable {
     static func write<V>(
         _ newValue: V,
         at keyPath: WritableKeyPath<A, V>) -> (A) -> Changeable<A> where V: Equatable {
-        return write(newValue, at: keyPath, shouldChange: !=)
+        write(newValue, at: keyPath, shouldChange: !=)
     }
 
     /// generate a transform function for a value of type `A`. The function will use the binary function `shouldChange` to determine whether or not to write a `newValue` of type `V` at the keyPath `keyPath` in a receiver.

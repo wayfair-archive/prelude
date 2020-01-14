@@ -20,7 +20,7 @@ public protocol Monoid: Semigroup {
 
 public extension Sequence where Element: Monoid {
     func concat() -> Element {
-        return reduce(.empty, <>)
+        reduce(.empty, <>)
     }
 }
 
@@ -28,43 +28,43 @@ public extension Sequence where Element: Monoid {
 
 extension Array: Monoid {
     public static var empty: [Element] {
-        return []
+        []
     }
 
     public static func <>(_ lhs: [Element], _ rhs: [Element]) -> [Element] {
-        return lhs + rhs
+        lhs + rhs
     }
 }
 
 extension Dictionary: Semigroup where Value: Semigroup {
     public static func <>(_ lhs: Dictionary, _ rhs: Dictionary) -> Dictionary {
-        return lhs.merging(rhs, uniquingKeysWith: <>)
+        lhs.merging(rhs, uniquingKeysWith: <>)
     }
 }
 
 extension Dictionary: Monoid where Value: Semigroup {
     public static var empty: Dictionary {
-        return [:]
+        [:]
     }
 }
 
 extension String: Monoid {
     public static var empty: String {
-        return ""
+        ""
     }
 
     public static func <>(_ lhs: String, _ rhs: String) -> String {
-        return lhs + rhs
+        lhs + rhs
     }
 }
 
 extension Substring: Monoid {
     public static var empty: Substring {
-        return Substring()
+        Substring()
     }
 
     public static func <>(_ lhs: Substring, _ rhs: Substring) -> Substring {
-        return lhs + rhs
+        lhs + rhs
     }
 }
 
@@ -79,7 +79,7 @@ public struct First<A>: Semigroup {
     }
 
     public static func <>(_ keep: First<A>, _ discard: First<A>) -> First<A> {
-        return keep
+        keep
     }
 }
 
@@ -94,7 +94,7 @@ public struct Last<A>: Semigroup {
     }
 
     public static func <>(_ discard: Last<A>, _ keep: Last<A>) -> Last<A> {
-        return keep
+        keep
     }
 }
 
@@ -125,17 +125,17 @@ extension Optional: Monoid where Wrapped: Semigroup {
 
 // can’t actually conform tuples to protocols in Swift (yet), but we can implement the `<>` operator for a bunch of tuples of `Semigroup`s, which is kind of the same thing
 public func <><M: Semigroup, N: Semigroup>(_ lhs: (M, N), _ rhs: (M, N)) -> (M, N) {
-    return (lhs.0 <> rhs.0, lhs.1 <> rhs.1)
+    (lhs.0 <> rhs.0, lhs.1 <> rhs.1)
 }
 
 public func <><M: Semigroup, N: Semigroup, O: Semigroup>(_ lhs: (M, N, O), _ rhs: (M, N, O)) -> (M, N, O) {
-    return (lhs.0 <> rhs.0, lhs.1 <> rhs.1, lhs.2 <> rhs.2)
+    (lhs.0 <> rhs.0, lhs.1 <> rhs.1, lhs.2 <> rhs.2)
 }
 
 public func <><M: Semigroup, N: Semigroup, O: Semigroup, P: Semigroup>(_ lhs: (M, N, O, P), _ rhs: (M, N, O, P)) -> (M, N, O, P) {
-    return (lhs.0 <> rhs.0, lhs.1 <> rhs.1, lhs.2 <> rhs.2, lhs.3 <> rhs.3)
+    (lhs.0 <> rhs.0, lhs.1 <> rhs.1, lhs.2 <> rhs.2, lhs.3 <> rhs.3)
 }
 
 public func <><M: Semigroup, N: Semigroup, O: Semigroup, P: Semigroup, Q: Semigroup>(_ lhs: (M, N, O, P, Q), _ rhs: (M, N, O, P, Q)) -> (M, N, O, P, Q) {
-    return (lhs.0 <> rhs.0, lhs.1 <> rhs.1, lhs.2 <> rhs.2, lhs.3 <> rhs.3, lhs.4 <> rhs.4)
+    (lhs.0 <> rhs.0, lhs.1 <> rhs.1, lhs.2 <> rhs.2, lhs.3 <> rhs.3, lhs.4 <> rhs.4)
 }
