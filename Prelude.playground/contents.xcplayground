@@ -5,5 +5,6 @@
         <page name='prelude'/>
         <page name='reducers'/>
         <page name='refinement-types'/>
+        <page name='laters'/>
     </pages>
 </playground>
