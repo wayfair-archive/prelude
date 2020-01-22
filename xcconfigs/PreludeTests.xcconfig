@@ -1,0 +1,22 @@
+//
+// This source file is part of Prelude, an open source project by Wayfair
+//
+// Copyright (c) 2018 Wayfair, LLC.
+// Licensed under the 2-Clause BSD License
+//
+// See LICENSE.md for license information
+//
+
+#include "Shared/XCTest.xcconfig"
+
+PRODUCT_NAME = PreludeTests
+PRODUCT_BUNDLE_IDENTIFIER = com.wayfair.PreludeTests
+
+SWIFT_VERSION = 5.1
+
+TARGETED_DEVICE_FAMILY = 1,2
+
+IPHONEOS_DEPLOYMENT_TARGET = 11.0
+MACOSX_DEPLOYMENT_TARGET = 10.13
+
+INFOPLIST_FILE = Tests/PreludeTests/Supporting Files/Info.plist

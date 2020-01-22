@@ -45,6 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2475655723D9091B00A2478F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Prelude::PreludeTests";
+			remoteInfo = PreludeTests;
+		};
 		24909D3B23D0FCAB00E193FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -55,6 +62,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2475655A23D909F100A2478F /* PreludeTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PreludeTests.xcconfig; sourceTree = "<group>"; };
+		2475655C23D909F100A2478F /* CompilerWarnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CompilerWarnings.xcconfig; sourceTree = "<group>"; };
+		2475655D23D909F100A2478F /* XCTest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = XCTest.xcconfig; sourceTree = "<group>"; };
+		2475655E23D909F100A2478F /* Framework.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
+		2475655F23D909F100A2478F /* CodeSigning.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
+		2475656023D909F100A2478F /* Target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Target.xcconfig; sourceTree = "<group>"; };
+		2475656123D909F100A2478F /* Prelude.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Prelude.xcconfig; sourceTree = "<group>"; };
+		2475656223D909F100A2478F /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		24909D3C23D101E400E193FD /* LatersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatersTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* ChangeTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTracking.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Laters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Laters.swift; sourceTree = "<group>"; };
@@ -80,8 +95,8 @@
 		OBJ_36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Prelude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prelude.h; sourceTree = "<group>"; };
-		"Prelude::Prelude::Product" /* Prelude.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"Prelude::PreludeTests::Product" /* PreludeTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Prelude::Prelude::Product" /* Prelude.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Prelude.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Prelude::PreludeTests::Product" /* PreludeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = PreludeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +118,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2475655923D909F100A2478F /* xcconfigs */ = {
+			isa = PBXGroup;
+			children = (
+				2475655A23D909F100A2478F /* PreludeTests.xcconfig */,
+				2475655B23D909F100A2478F /* Shared */,
+				2475656123D909F100A2478F /* Prelude.xcconfig */,
+				2475656223D909F100A2478F /* Project.xcconfig */,
+			);
+			path = xcconfigs;
+			sourceTree = "<group>";
+		};
+		2475655B23D909F100A2478F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2475655C23D909F100A2478F /* CompilerWarnings.xcconfig */,
+				2475655D23D909F100A2478F /* XCTest.xcconfig */,
+				2475655E23D909F100A2478F /* Framework.xcconfig */,
+				2475655F23D909F100A2478F /* CodeSigning.xcconfig */,
+				2475656023D909F100A2478F /* Target.xcconfig */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		OBJ_20 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +175,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -148,8 +186,8 @@
 				OBJ_34 /* LICENSE.md */,
 				OBJ_35 /* Makefile */,
 				OBJ_36 /* README.md */,
+				2475655923D909F100A2478F /* xcconfigs */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -245,7 +283,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_30 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -306,7 +344,7 @@
 		OBJ_63 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Prelude::PreludeTests" /* PreludeTests */;
-			targetProxy = "Prelude::PreludeTests" /* PreludeTests */;
+			targetProxy = 2475655723D9091B00A2478F /* PBXContainerItemProxy */;
 		};
 		OBJ_79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -345,6 +383,7 @@
 		};
 		OBJ_39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2475656123D909F100A2478F /* Prelude.xcconfig */;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -397,6 +436,7 @@
 		};
 		OBJ_40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2475656123D909F100A2478F /* Prelude.xcconfig */;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -455,6 +495,7 @@
 		};
 		OBJ_66 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2475655D23D909F100A2478F /* XCTest.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -480,6 +521,7 @@
 		};
 		OBJ_67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2475655D23D909F100A2478F /* XCTest.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
