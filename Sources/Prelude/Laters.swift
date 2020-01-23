@@ -9,35 +9,9 @@
 
 public protocol Later {
     associatedtype Output
-
     func run(_ next: @escaping (Output) -> Void)
 }
 public enum Laters {
-}
-
-// MARK: - Execute
-
-public extension Laters {
-    struct Execute<L: Later> {
-        fileprivate let execute: (L.Output) -> Void
-
-        fileprivate let upstream: L
-    }
-}
-extension Laters.Execute: Later {
-    public typealias Output = L.Output
-
-    public func run(_ next: @escaping (L.Output) -> Void) {
-        upstream.run { value in
-            self.execute(value)
-            next(value)
-        }
-    }
-}
-public extension Later {
-    func execute(_ execute: @escaping (Output) -> Void) -> Laters.Execute<Self> {
-        .init(execute: execute, upstream: self)
-    }
 }
 
 // MARK: - FlatMap
@@ -45,7 +19,6 @@ public extension Later {
 public extension Laters {
     struct FlatMap<L: Later, B: Later> {
         fileprivate let transform: (L.Output) -> B
-
         fileprivate let upstream: L
     }
 }
@@ -72,7 +45,6 @@ public extension Later {
 public extension Laters {
     struct Map<L: Later, B> {
         fileprivate let transform: (L.Output) -> B
-
         fileprivate let upstream: L
     }
 }
@@ -92,12 +64,35 @@ public extension Later {
     }
 }
 
+// MARK: - Tap
+
+public extension Laters {
+    struct Tap<L: Later> {
+        fileprivate let execute: (L.Output) -> Void
+        fileprivate let upstream: L
+    }
+}
+extension Laters.Tap: Later {
+    public typealias Output = L.Output
+
+    public func run(_ next: @escaping (L.Output) -> Void) {
+        upstream.run { value in
+            self.execute(value)
+            next(value)
+        }
+    }
+}
+public extension Later {
+    func tap(_ execute: @escaping (Output) -> Void) -> Laters.Tap<Self> {
+        .init(execute: execute, upstream: self)
+    }
+}
+
 // MARK: - TryMap
 
 public extension Laters {
     struct TryMap<L: Later, B> {
         fileprivate let transform: (L.Output) throws -> B
-
         fileprivate let upstream: L
     }
 }
@@ -123,13 +118,11 @@ import Foundation
 
 public extension Laters {
     struct After<A> {
-        private let deadline: DispatchTime
-
+        private let deadline: () -> DispatchTime
         private let queue: DispatchQueue
-
         private let value: () -> A
 
-        public init(deadline: DispatchTime, queue: DispatchQueue, value: @autoclosure @escaping () -> A) {
+        public init(deadline: @autoclosure @escaping () -> DispatchTime, queue: DispatchQueue, value: @autoclosure @escaping () -> A) {
             self.deadline = deadline
             self.queue = queue
             self.value = value
@@ -140,7 +133,7 @@ extension Laters.After: Later {
     public typealias Output = A
 
     public func run(_ next: @escaping (A) -> Void) {
-        queue.asyncAfter(deadline: deadline, execute: {
+        queue.asyncAfter(deadline: deadline(), execute: {
             next(self.value())
         })
     }
@@ -149,7 +142,11 @@ extension Laters.After: Later {
 // MARK: - AnyLater
 
 public struct AnyLater<A> {
-    fileprivate let upstream: (@escaping (A) -> Void) -> Void
+    private let upstream: (@escaping (A) -> Void) -> Void
+
+    public init(upstream: @escaping (@escaping (A) -> Void) -> Void) {
+        self.upstream = upstream
+    }
 }
 extension AnyLater: Later {
     public typealias Output = A
@@ -161,5 +158,41 @@ extension AnyLater: Later {
 public extension Later {
     func eraseToAnyLater() -> AnyLater<Output> {
         .init(upstream: self.run)
+    }
+}
+
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
+// MARK: - DataTask
+
+public extension Laters {
+    struct DataTask {
+        private let request: URLRequest
+        private let session: URLSession
+
+        public init(request: URLRequest, session: URLSession = .shared) {
+            self.request = request
+            self.session = session
+        }
+    }
+}
+extension Laters.DataTask: Later {
+    public typealias Output = Result<(Data, URLResponse), Error>
+
+    public func run(_ next: @escaping (Result<(Data, URLResponse), Error>) -> Void) {
+        session.dataTask(with: request) { data, response, error in
+            guard let data = data, let response = response else {
+                if let error = error {
+                    next(.failure(error))
+                    return
+                } else {
+                    fatalError("todo")
+                }
+            }
+            next(.success((data, response)))
+            return
+        }.resume()
     }
 }

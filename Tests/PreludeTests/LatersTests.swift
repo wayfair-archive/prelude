@@ -21,25 +21,13 @@ final class LatersTests: XCTestCase {
         waitForExpectations(timeout: 2, handler: nil)
     }
 
-    func testLaterExecute() {
-        var testValue = 0
-
-        let expect = expectation(description: "later")
-        sendTrue()
-            .execute { _ in testValue += 1 }
-            .run { _ in expect.fulfill() }
-        waitForExpectations(timeout: 2, handler: nil)
-
-        XCTAssertEqual(1, testValue)
-    }
-
     func testLaterFlatMap() {
         var testValue = ""
 
         let expect = expectation(description: "later")
         sendTrue()
             .flatMap { $0 ? Laters.After(deadline: .now() + 0.1, queue: .main, value: "foo") : Laters.After(deadline: .now() + 0.1, queue: .main, value: "bar") }
-            .execute { testValue = $0 }
+            .tap { testValue = $0 }
             .run { _ in expect.fulfill() }
         waitForExpectations(timeout: 2, handler: nil)
 
@@ -52,12 +40,25 @@ final class LatersTests: XCTestCase {
         let expect = expectation(description: "later")
         sendTrue()
             .map { "\($0)" }
-            .execute { testValue = $0 }
+            .tap { testValue = $0 }
             .run { _ in expect.fulfill() }
         waitForExpectations(timeout: 2, handler: nil)
 
         XCTAssertEqual("true", testValue)
     }
+
+    func testLaterTap() {
+        var testValue = 0
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tap { _ in testValue += 1 }
+            .run { _ in expect.fulfill() }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual(1, testValue)
+    }
+
 
     private struct MyError: Error { }
 
@@ -101,8 +102,8 @@ final class LatersErasedTests: XCTestCase {
         sendTrue()
             .eraseToAnyLater()
             .run {
-            XCTAssertTrue($0)
-            expect.fulfill()
+                XCTAssertTrue($0)
+                expect.fulfill()
         }
         waitForExpectations(timeout: 2, handler: nil)
     }
@@ -112,7 +113,7 @@ final class LatersErasedTests: XCTestCase {
 
         let expect = expectation(description: "later")
         sendTrue()
-            .execute { _ in testValue += 1 }
+            .tap { _ in testValue += 1 }
             .eraseToAnyLater()
             .run { _ in expect.fulfill() }
         waitForExpectations(timeout: 2, handler: nil)
@@ -126,7 +127,7 @@ final class LatersErasedTests: XCTestCase {
         let expect = expectation(description: "later")
         sendTrue()
             .flatMap { $0 ? Laters.After(deadline: .now() + 0.1, queue: .main, value: "foo") : Laters.After(deadline: .now() + 0.1, queue: .main, value: "bar") }
-            .execute { testValue = $0 }
+            .tap { testValue = $0 }
             .eraseToAnyLater()
             .run { _ in expect.fulfill() }
         waitForExpectations(timeout: 2, handler: nil)
@@ -140,7 +141,7 @@ final class LatersErasedTests: XCTestCase {
         let expect = expectation(description: "later")
         sendTrue()
             .map { "\($0)" }
-            .execute { testValue = $0 }
+            .tap { testValue = $0 }
             .eraseToAnyLater()
             .run { _ in expect.fulfill() }
         waitForExpectations(timeout: 2, handler: nil)

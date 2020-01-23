@@ -101,9 +101,9 @@ extension LatersTests {
     // to regenerate.
     static let __allTests__LatersTests = [
         ("testLater", testLater),
-        ("testLaterExecute", testLaterExecute),
         ("testLaterFlatMap", testLaterFlatMap),
         ("testLaterMap", testLaterMap),
+        ("testLaterTap", testLaterTap),
         ("testLaterTryMapNoThrow", testLaterTryMapNoThrow),
         ("testLaterTryMapThrows", testLaterTryMapThrows),
     ]
