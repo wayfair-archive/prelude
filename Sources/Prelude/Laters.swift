@@ -40,6 +40,41 @@ public extension Later {
     }
 }
 
+// MARK: - Fold
+
+public extension Laters {
+    struct Fold<A, B, L, E> where L: Later, L.Output == Result<A, E> {
+        fileprivate let transformValue: (A) -> B
+        fileprivate let transformError: (E) -> B
+        fileprivate let upstream: L
+    }
+}
+extension Laters.Fold: Later {
+    public typealias Output = B
+
+    public func run(_ next: @escaping (B) -> Void) {
+        upstream.run { result in
+            let nextValue: B
+            switch result {
+            case .failure(let error):
+                nextValue = self.transformError(error)
+            case .success(let value):
+                nextValue = self.transformValue(value)
+            }
+            next(nextValue)
+        }
+    }
+}
+public extension Later {
+    func fold<A, B, E>(transformValue: @escaping (A) -> B, transformError: @escaping (E) -> B) -> Laters.Fold<A, B, Self, E> {
+        .init(transformValue: transformValue, transformError: transformError, upstream: self)
+    }
+
+    func replaceError<A, E>(_ replaceError: @autoclosure @escaping () -> A) -> Laters.Fold<A, A, Self, E> {
+        .init(transformValue: id, transformError: { _ in replaceError() }, upstream: self)
+    }
+}
+
 // MARK: - Map
 
 public extension Laters {
@@ -60,6 +95,29 @@ extension Laters.Map: Later {
 }
 public extension Later {
     func map<B>(_ transform: @escaping (Output) -> B) -> Laters.Map<Self, B> {
+        .init(transform: transform, upstream: self)
+    }
+}
+
+// MARK: - MapSuccess
+
+public extension Laters {
+    struct MapSuccess<A, B, L, E> where L: Later, L.Output == Result<A, E> {
+        fileprivate let transform: (A) -> B
+        fileprivate let upstream: L
+    }
+}
+extension Laters.MapSuccess: Later {
+    public typealias Output = Result<B, E>
+    public func run(_ next: @escaping (Result<B, E>) -> Void) {
+        upstream.run { result in
+            let nextValue = result.map(self.transform)
+            next(nextValue)
+        }
+    }
+}
+public extension Later {
+    func mapSuccess<A, B, E>(_ transform: @escaping (A) -> B) -> Laters.MapSuccess<A, B, Self, E> where Output == Result<A, E> {
         .init(transform: transform, upstream: self)
     }
 }
@@ -108,6 +166,30 @@ extension Laters.TryMap: Later {
 }
 public extension Later {
     func tryMap<B>(_ transform: @escaping (Self.Output) throws -> B) -> Laters.TryMap<Self, B> {
+        .init(transform: transform, upstream: self)
+    }
+}
+
+// MARK: - TryMapSuccess
+
+public extension Laters {
+    struct TryMapSuccess<A, B, L> where L: Later, L.Output == Result<A, Error> {
+        fileprivate let transform: (A) throws -> B
+        fileprivate let upstream: L
+    }
+}
+extension Laters.TryMapSuccess: Later {
+    public typealias Output = Result<B, Error>
+
+    public func run(_ next: @escaping (Result<B, Error>) -> Void) {
+        upstream.run { result in
+            let nextValue = result.flatMap { value in Result { try self.transform(value) } }
+            next(nextValue)
+        }
+    }
+}
+public extension Later {
+    func tryMapSuccess<A, B>(_ transform: @escaping (A) throws -> B) -> Laters.TryMapSuccess<A, B, Self> where Output == Result<A, Error> {
         .init(transform: transform, upstream: self)
     }
 }
@@ -172,7 +254,7 @@ public extension Laters {
         private let request: URLRequest
         private let session: URLSession
 
-        public init(request: URLRequest, session: URLSession = .shared) {
+        public init(request: URLRequest, session: URLSession) {
             self.request = request
             self.session = session
         }

@@ -54,18 +54,48 @@ t.run { result in
     }
 }
 
-let t2 = Laters.DataTask(request: .init(url: myURL))
+let t2 = Laters.DataTask(request: .init(url: myURL), session: .shared)
     .map { result -> Result<Int, Error> in
         switch result {
         case .success(let tuple):
-            let (data, response) = tuple
+            let (_, response) = tuple
             return .success((response as! HTTPURLResponse).statusCode)
         case .failure(let error):
             return .failure(error)
         }
-}
-    .eraseToAnyLater()
+}.eraseToAnyLater()
 
-t2.run { result in
-    print(result)
-}
+let t3 = Laters.DataTask(request: .init(url: myURL), session: .shared)
+    .mapSuccess { tuple in
+        (tuple.1 as! HTTPURLResponse).statusCode
+}.eraseToAnyLater()
+
+extension String: Error { }
+
+let y = Laters.After(deadline: .now() + 1, queue: .main, value: Result<Int, String>.failure("foobar"))
+    .mapSuccess { _ in fatalError("should not be called") }
+
+y.run { value in print(value) }
+
+let t4 = t3.tryMapSuccess { int throws -> Void in
+    guard int == 200 else { throw "status code error: \(int)" }
+    return ()
+}.eraseToAnyLater()
+
+type(of: t4)
+
+let t5 = Laters.DataTask(
+    request: .init(url: myURL),
+    session: .shared
+).tryMapSuccess { tuple throws -> (Data, HTTPURLResponse) in
+    guard let response = tuple.1 as? HTTPURLResponse else {
+        throw "not a response, this should never happen"
+    }
+    return (tuple.0, response)
+}.tryMapSuccess { tuple throws -> Data in
+    let (data, response) = tuple
+    guard response.statusCode == 200 else {
+        throw "bad status code: \(response.statusCode)"
+    }
+    return data
+}.replaceError(Data.init()).eraseToAnyLater()
