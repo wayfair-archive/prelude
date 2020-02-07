@@ -313,20 +313,52 @@ public extension Laters {
         }
     }
 }
+/// perform the cursed conversion from a `URLSession` `dataTask` callback into something nicer. The intent is to handle the callback like this:
+///   * `data` and `response` are non-nil ==> return `.success((data, response))`
+///   * `response` and `error` are non-nil ==> return `.failure(error)` and potentially stash response info inside a custom `Error` (TODO)
+///   * `data` is nil but `response` is non-nil ==> force an empty `Data` and return `.success((emptyData, response))`
+///   * `error` is non-nil ==> return `.failure(error)`
+///   * anything else ==> `preconditionFailure` (see below about notes on `throws`)
+///
+/// wait… huh? Why do we need this?? Read here:
+///   * https://oleb.net/2020/urlsession-publisher/
+///   * https://oleb.net/blog/2018/03/making-illegal-states-unrepresentable/
+///
+/// Re: `throws` … the list above is indeed the intent for how we want to handle the cursed URLSession callback. However, to make this function itself total and make sure all cases are testable, we will instead throw an `NSError` for the “anything else” case, with the understanding that at the call site, in actual use, this function (which is `internal` to this library) will be invoked with `try!`
+///
+/// phew … hoping to never have to do this again
+/// - Parameters:
+///   - data: cursed `URLSession` optional `Data`
+///   - response: cursed `URLSession` optional `URLResponse`
+///   - error: cursed `URLSession` optional `Error`
+func process(data: Data?, response: URLResponse?, error: Error?) throws -> Result<(Data, URLResponse), Error> {
+    switch (data, response, error) {
+    case (.some(let data), .some(let response), .none):
+        return .success((data, response))
+    case (.none, .some(let response), .none):
+        return .success((emptyData, response))
+    case (.none, .some(_), .some(let error)):
+        // TODO: figure out where to stash the response
+        return .failure(error)
+    case (.none, .none, .some(let error)):
+        return .failure(error)
+    default:
+        let errorDescription = """
+Laters: processing URLSession callback: hit a case which should never happen:
+data: \(String(describing: data)), response: \(String(describing: response)), error: \(String(describing: error))
+"""
+        let internalError = NSError(domain: "com.wayfair.prelude.laters.ErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: errorDescription])
+        throw internalError
+    }
+}
+private let emptyData = Data()
 extension Laters.DataTask: Later {
     public typealias Output = Result<(Data, URLResponse), Error>
 
     public func run(_ next: @escaping (Result<(Data, URLResponse), Error>) -> Void) {
         session.dataTask(with: request) { data, response, error in
-            guard let data = data, let response = response else {
-                if let error = error {
-                    next(.failure(error))
-                    return
-                } else {
-                    fatalError("todo")
-                }
-            }
-            next(.success((data, response)))
+            let result = try! process(data: data, response: response, error: error)
+            next(result)
             return
         }.resume()
     }

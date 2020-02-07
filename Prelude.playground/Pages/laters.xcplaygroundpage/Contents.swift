@@ -104,6 +104,8 @@ let t5 = Laters.DataTask(
     return data
 }.replaceError(Data.init()).eraseToAnyLater()
 
+t5.run { print("t5: \($0)") }
+
 Laters.After(deadline: .now() + 1, queue: .main, value: "x")
     .dispatchAsync(on: .global(qos: .default))
     .dispatchAsync(on: .main)

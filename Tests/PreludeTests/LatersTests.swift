@@ -11,6 +11,10 @@ import Foundation
 @testable import Prelude
 import XCTest
 
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
 final class LatersTests: XCTestCase {
     func testLater() {
         let expect = expectation(description: "later")
@@ -368,6 +372,49 @@ final class LatersErasedTests: XCTestCase {
                 expect.fulfill()
         }
         waitForExpectations(timeout: 2, handler: nil)
+    }
+
+    func testLaterProcessURLSessionCallback() throws {
+        let data = "test".data(using: .utf8)!
+        let response = HTTPURLResponse(url: URL(string: "https://httpbin.org")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let error = NSError(domain: "later", code: 99, userInfo: nil)
+
+        let r1 = try process(data: data, response: response, error: nil)
+        guard case .success(let tuple1) = r1 else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(data, tuple1.0)
+        XCTAssertEqual(response, tuple1.1)
+
+        let r2 = try process(data: nil, response: response, error: error)
+        guard case .failure(let error2) = r2 else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(error, error2 as NSError)
+
+        let r3 = try process(data: nil, response: response, error: nil)
+        guard case .success(let tuple3) = r3 else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(Data(), tuple3.0)
+        XCTAssertEqual(response, tuple3.1)
+
+        let r4 = try process(data: nil, response: nil, error: error)
+        guard case .failure(let error4) = r4 else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(error, error4 as NSError)
+
+        XCTAssertThrowsError(
+            try process(data: nil, response: nil, error: nil)
+        )
+        XCTAssertThrowsError(
+            try process(data: data, response: response, error: error)
+        )
     }
 }
 
