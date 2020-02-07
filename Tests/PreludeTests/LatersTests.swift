@@ -21,6 +21,43 @@ final class LatersTests: XCTestCase {
         waitForExpectations(timeout: 2, handler: nil)
     }
 
+    func testLaterDispatchAsync() {
+        var testValue = false
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .dispatchAsync(on: .global())
+            .run { value in
+                // if we don’t deadlock here then the test passes 😂
+                DispatchQueue.main.sync {
+                    testValue = value
+                    expect.fulfill()
+                }
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertTrue(testValue)
+    }
+
+    func testLaterDispatchAsyncTwice() {
+        var testValue = false
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .dispatchAsync(on: .global())
+            .dispatchAsync(on: .global())
+            .run { value in
+                // if we don’t deadlock here then the test passes 😂
+                DispatchQueue.main.sync {
+                    testValue = value
+                    expect.fulfill()
+                }
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertTrue(testValue)
+    }
+
     func testLaterFlatMap() {
         var testValue = ""
 
@@ -34,6 +71,58 @@ final class LatersTests: XCTestCase {
         XCTAssertEqual("foo", testValue)
     }
 
+    func testLaterFoldFailure() {
+        var testValue = 0
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tryMap { _ in throw NSError(domain: "later", code: 99, userInfo: nil) }
+        .fold(
+            transformValue: { _ -> Int in XCTFail("should not be called"); return 0 },
+            transformError: { error in return (error as NSError).code }
+        ).run { value in
+            testValue = value
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual(99, testValue)
+    }
+
+    func testLaterFoldSuccess() {
+        var testValue = 0
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tryMap { $0 }
+        .fold(
+            transformValue: { $0 ? 88 : 1 },
+            transformError: { _ -> Int in XCTFail("should not be called"); return 0 }
+        ).run { value in
+            testValue = value
+            expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual(88, testValue)
+    }
+
+    func testLaterReplaceError() {
+        var testValue = 0
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tryMap { _ in throw NSError(domain: "later", code: 99, userInfo: nil) }
+            .replaceError(88)
+            .run { value in
+                testValue = value
+                expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual(88, testValue)
+    }
+
     func testLaterMap() {
         var testValue = ""
 
@@ -45,6 +134,44 @@ final class LatersTests: XCTestCase {
         waitForExpectations(timeout: 2, handler: nil)
 
         XCTAssertEqual("true", testValue)
+    }
+
+    func testLaterMapSuccessSucceeds() {
+        var testValue = ""
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tryMap { $0 }
+            .mapSuccess{ "\($0)" }
+            .run { result in
+                switch result {
+                case .failure: XCTFail("should not be reached")
+                case .success(let stringValue): testValue = stringValue
+                }
+                expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual("true", testValue)
+    }
+
+    func testLaterMapSuccessFailure() {
+        var testValue = 0
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tryMap { _ in throw NSError(domain: "later", code: 99, userInfo: nil) }
+            .mapSuccess{ XCTFail("should not be reached") }
+            .run { result in
+                switch result {
+                case .failure(let error): testValue = (error as NSError).code
+                case .success: XCTFail("should not be reached")
+                }
+                expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual(99, testValue)
     }
 
     func testLaterTap() {
@@ -93,6 +220,63 @@ final class LatersTests: XCTestCase {
                 expect.fulfill()
         }
         waitForExpectations(timeout: 2, handler: nil)
+    }
+
+    func testLaterTryMapSuccessSucceeds() {
+        var testValue = ""
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tryMap { !$0 }
+            .tryMapSuccess { "\($0)" }
+            .run { result in
+                switch result {
+                case .failure: XCTFail("should not be reached")
+                case .success(let stringValue): testValue = stringValue
+                }
+                expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual("false", testValue)
+    }
+
+    func testLaterTryMapSuccessFails() {
+        var testValue = 0
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tryMap(id)
+            .tryMapSuccess { _ in throw NSError(domain: "later", code: 99, userInfo: nil) }
+            .run { result in
+                switch result {
+                case .failure(let error): testValue = (error as NSError).code
+                case .success: XCTFail("should not be reached")
+                }
+                expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual(99, testValue)
+    }
+
+    func testLaterTryMapSuccessShortCircuits() {
+        var testValue = 0
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .tryMap { _ in throw NSError(domain: "later", code: 99, userInfo: nil) }
+            .tryMapSuccess { XCTFail("should not be reached") }
+            .run { result in
+                switch result {
+                case .failure(let error): testValue = (error as NSError).code
+                case .success: XCTFail("should not be reached")
+                }
+                expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertEqual(99, testValue)
     }
 }
 

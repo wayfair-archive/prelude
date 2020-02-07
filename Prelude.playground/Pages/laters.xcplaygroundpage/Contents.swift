@@ -10,6 +10,10 @@
 import Foundation
 import Prelude
 
+//
+// Laters
+//
+
 let x = Laters.After(deadline: .now() + 1, queue: .main, value: 1)
     .tap { print("first step: \($0) \(Date())") }
     .flatMap { Laters.After(deadline: .now() + $0, queue: .main, value: "hello") }
@@ -99,3 +103,45 @@ let t5 = Laters.DataTask(
     }
     return data
 }.replaceError(Data.init()).eraseToAnyLater()
+
+Laters.After(deadline: .now() + 1, queue: .main, value: "x")
+    .dispatchAsync(on: .global(qos: .default))
+    .dispatchAsync(on: .main)
+
+func myAsyncFunc(completion: @escaping (Void) -> Void) {
+    print("doin’ thangs")
+    DispatchQueue.main.async {
+        completion(())
+    }
+}
+
+let a = AnyLater(myAsyncFunc).run {
+    print("ok")
+}
+
+func myAsyncFunc0(completion: @escaping () -> Void) {
+    print("doin’ thangs")
+    DispatchQueue.main.async {
+        completion()
+    }
+}
+
+let a0 = AnyLater(myAsyncFunc0)
+
+func myAsyncFunc1(completion: @escaping (Bool) -> Void) {
+    print("doin’ thangs")
+    DispatchQueue.main.async {
+        completion(true)
+    }
+}
+
+let b = AnyLater(myAsyncFunc1)
+
+func myAsyncFunc2(completion: @escaping (Bool, String) -> Void) {
+    print("doin’ thangs")
+    DispatchQueue.main.async {
+        completion(true, "ok")
+    }
+}
+
+let c = AnyLater(myAsyncFunc2) // => AnyLater<(Bool, String)>

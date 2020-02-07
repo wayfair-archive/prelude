@@ -14,6 +14,34 @@ public protocol Later {
 public enum Laters {
 }
 
+// MARK: - DispatchAsync
+
+public extension Laters {
+    struct DispatchAsync<L: Later> {
+        fileprivate let queue: DispatchQueue
+        fileprivate let upstream: L
+    }
+}
+extension Laters.DispatchAsync: Later {
+    public typealias Output = L.Output
+
+    public func run(_ next: @escaping (L.Output) -> Void) {
+        upstream.run { value in
+            self.queue.async { next(value) }
+        }
+    }
+
+    public func dispatchAsync(on queue: DispatchQueue) -> Laters.DispatchAsync<L> {
+        // overload for when two `dispatchAsync`s are in a row. We only need the last one (there’s no need to dispatch twice)
+        .init(queue: queue, upstream: upstream)
+    }
+}
+public extension Later {
+    func dispatchAsync(on queue: DispatchQueue) -> Laters.DispatchAsync<Self> {
+        .init(queue: queue, upstream: self)
+    }
+}
+
 // MARK: - FlatMap
 
 public extension Laters {
@@ -224,11 +252,7 @@ extension Laters.After: Later {
 // MARK: - AnyLater
 
 public struct AnyLater<A> {
-    private let upstream: (@escaping (A) -> Void) -> Void
-
-    public init(upstream: @escaping (@escaping (A) -> Void) -> Void) {
-        self.upstream = upstream
-    }
+    fileprivate let upstream: (@escaping (A) -> Void) -> Void
 }
 extension AnyLater: Later {
     public typealias Output = A
@@ -240,6 +264,35 @@ extension AnyLater: Later {
 public extension Later {
     func eraseToAnyLater() -> AnyLater<Output> {
         .init(upstream: self.run)
+    }
+}
+public extension AnyLater where A == Void {
+    init(_ upstream: @escaping (@escaping () -> Void) -> Void) {
+        // Q: When calling this function in Swift 4 or later, you must pass a '()' tuple; did you mean for the input type to be '()'?
+        // A: No
+        func f(_ v: @escaping (Void) -> Void) {
+            upstream { v(()) }
+        }
+        self.upstream = f
+    }
+}
+public extension AnyLater {
+    init(_ upstream: @escaping (@escaping (A) -> Void) -> Void) {
+        self.upstream = upstream
+    }
+
+    init<T, U>(_ upstream: @escaping (@escaping (T, U) -> Void) -> Void) where A == (T, U) {
+        func f(_ tuple: @escaping ((T, U)) -> Void) {
+            upstream { first, second in tuple((first, second)) }
+        }
+        self.upstream = f
+    }
+
+    init<T, U, V>(_ upstream: @escaping (@escaping (T, U, V) -> Void) -> Void) where A == (T, U, V) {
+        func f(_ triple: @escaping ((T, U, V)) -> Void) {
+            upstream { first, second, third in triple((first, second, third)) }
+        }
+        self.upstream = f
     }
 }
 
