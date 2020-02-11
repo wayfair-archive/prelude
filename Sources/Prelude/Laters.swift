@@ -7,10 +7,20 @@
 // See LICENSE.md for license information
 //
 
+/// wrapper for an asynchronous computation, similar to a promise, but lighter-weight. To execute a `Later`, call `run(_:)` and pass a callback function. To extend a `Later` with an additional synchronous step, use `map(_:)`. To extend a `Later` with an additional asynchronous step, use `flatMap(_:)`.
+///
+/// `Later`s differ from promises and some other async programming constructs in a few key ways:
+///   * `Later`s are always lazy: a `Later` never executes any work until its `run(_:)` function is called. This makes their behavior with respect to side-effects more predictable and more controllable by the programmer.
+///   * the implementation of `Later` does not include any use of shared memory. This means that execution is simple and more transparent to the programmer: the built-in operators never take any locks, dispatch to any queue “under the hood”, or perform any shenanigans with respect to threads unless specifically instructed by the programmer to do so. On the other hand, this prevents any “combining” or “zipping” operators from being implemented safely.
+///   * `Later`s are implemented in a “non-type-erasing” way, similar in style to Apple’s recent Swift framework releases (like SwiftUI and Combine). This means that they should be fast (none of the built in operators require allocating any memory eg. for closures), and that we can perform some optimizations “statically” (for example, we can avoid `DispatchQueue.async`ing twice where it is not needed)
+///   * laws! With some hand-waving to account for Swift implementation details, `Later`s form a lawful _monad_ (specifically, the continuation monad), which means that numerous other constructs are trivially implementable on top of these base operators (for example, `>>` or `sequence_` to execute a series of `Later`s serially while discarding their results, `>=>` to compose flatMap-able transformation functions in the absence of a `Later` value to apply them to, and more)
 public protocol Later {
     associatedtype Output
+    /// execute the work represented by this `Later` and receive the value some time in the future via a callback function
+    /// - Parameter next: the callback which will eventually receive a value of type `Output`
     func run(_ next: @escaping (Output) -> Void)
 }
+/// namespace for various `Later`-related types
 public enum Laters {
 }
 
@@ -37,6 +47,8 @@ extension Laters.DispatchAsync: Later {
     }
 }
 public extension Later {
+    /// given a `Later` (`self`) which performs some work, return a `Later` which performs the same work, but then dispatches asynchronously onto the provided `queue` prior to calling its callback
+    /// - Parameter queue: a `DispatchQueue`
     func dispatchAsync(on queue: DispatchQueue) -> Laters.DispatchAsync<Self> {
         .init(queue: queue, upstream: self)
     }
@@ -63,6 +75,8 @@ extension Laters.FlatMap: Later {
     }
 }
 public extension Later {
+    /// given a `Later` (`self`) that performs some work, produce a new `Later` that performs the original work, plus the additional asynchronous work given by the function `transform`
+    /// - Parameter transform: a function that describes the additional work
     func flatMap<B: Later>(_ transform: @escaping (Output) -> B) -> Laters.FlatMap<Self, B> {
         .init(transform: transform, upstream: self)
     }
@@ -94,10 +108,16 @@ extension Laters.Fold: Later {
     }
 }
 public extension Later {
+    /// given a `Later` (`self`) that performs some work that may fail (by returning a `Result`), “recover” from the failure by providing two functions that transform a possible next value or error into a third downstream type
+    /// - Parameters:
+    ///   - transformValue: a function to transform `.success` values into some downstream type
+    ///   - transformError: a function to transform `.failure` values into some downstream type
     func fold<A, B, E>(transformValue: @escaping (A) -> B, transformError: @escaping (E) -> B) -> Laters.Fold<A, B, Self, E> {
         .init(transformValue: transformValue, transformError: transformError, upstream: self)
     }
 
+    /// given a `Later` (`self`) that performs some work that may fail (by returning a `Result`), replace any errors produced with a `.success` value instead
+    /// - Parameter replaceError: a value to be used in place of any errors that occur
     func replaceError<A, E>(_ replaceError: @autoclosure @escaping () -> A) -> Laters.Fold<A, A, Self, E> {
         .init(transformValue: id, transformError: { _ in replaceError() }, upstream: self)
     }
@@ -122,6 +142,8 @@ extension Laters.Map: Later {
     }
 }
 public extension Later {
+    /// given a `Later` (`self`) that performs some work, produce a new `Later` that performs the original work, plus the additional synchronous work given by the function `transform`
+    /// - Parameter transform: a function that describes the additional work
     func map<B>(_ transform: @escaping (Output) -> B) -> Laters.Map<Self, B> {
         .init(transform: transform, upstream: self)
     }
@@ -145,6 +167,8 @@ extension Laters.MapSuccess: Later {
     }
 }
 public extension Later {
+    /// given a `Later` (`self`) that performs some work that may fail (by returning a `Result`), transform just the `.success` values that may be produced using the given `transform` function. `.failure` values produced will pass through unaffected
+    /// - Parameter transform: a transform function
     func mapSuccess<A, B, E>(_ transform: @escaping (A) -> B) -> Laters.MapSuccess<A, B, Self, E> where Output == Result<A, E> {
         .init(transform: transform, upstream: self)
     }
@@ -169,6 +193,8 @@ extension Laters.Tap: Later {
     }
 }
 public extension Later {
+    /// given a `Later` (`self`) that performs some work, execute the provided `execute` function with the eventual `Output` of the `Later`, which still passing the value along to subsequent callbacks
+    /// - Parameter execute: a function that performs some action with the eventual `Output`
     func tap(_ execute: @escaping (Output) -> Void) -> Laters.Tap<Self> {
         .init(execute: execute, upstream: self)
     }
@@ -193,6 +219,8 @@ extension Laters.TryMap: Later {
     }
 }
 public extension Later {
+    /// given a `Later` (`self`) that performs some work, produce a new `Later` that performs the original work, plus the additional synchronous, possibly failable work given by the throwing function `transform`
+    /// - Parameter transform: a function that describes the additional work and that may `throw`
     func tryMap<B>(_ transform: @escaping (Self.Output) throws -> B) -> Laters.TryMap<Self, B> {
         .init(transform: transform, upstream: self)
     }
@@ -217,6 +245,8 @@ extension Laters.TryMapSuccess: Later {
     }
 }
 public extension Later {
+    /// given a `Later` (`self`) that performs some work that may fail (by returning a `Result`), transform just the `.success` values that may be produced using the given `transform` function, which itself may `throw`. `.failure` values produced will pass through unaffected
+    /// - Parameter transform: a transform function that may `throw`
     func tryMapSuccess<A, B>(_ transform: @escaping (A) throws -> B) -> Laters.TryMapSuccess<A, B, Self> where Output == Result<A, Error> {
         .init(transform: transform, upstream: self)
     }
@@ -232,6 +262,11 @@ public extension Laters {
         private let queue: DispatchQueue
         private let value: () -> A
 
+        /// kick-start a `Later` by waiting until the provided `deadline`, then passing the provided `value` out to the callback, on the provided `queue`
+        /// - Parameters:
+        ///   - deadline: the `deadline` passed to the `queue`’s `asyncAfter(deadline:execute:)` function. This value is evaluated lazily at the time the `run(_:)` function is called (ie. `DispatchTime.now()` will work the way you are expecting it to)
+        ///   - queue: a `DispatchQueue`
+        ///   - value: a value
         public init(deadline: @autoclosure @escaping () -> DispatchTime, queue: DispatchQueue, value: @autoclosure @escaping () -> A) {
             self.deadline = deadline
             self.queue = queue
@@ -262,6 +297,7 @@ extension AnyLater: Later {
     }
 }
 public extension Later {
+    /// erase the type of a `Later` so that it may be more concise and interoperable
     func eraseToAnyLater() -> AnyLater<Output> {
         .init(upstream: self.run)
     }
@@ -307,6 +343,10 @@ public extension Laters {
         private let request: URLRequest
         private let session: URLSession
 
+        /// construct a `Later` which wraps a `URLSessionDataTask` vended by the provided `URLSession`
+        /// - Parameters:
+        ///   - request: a `URLRequest` used to construct the data task
+        ///   - session: the `URLSession` which will vend the task
         public init(request: URLRequest, session: URLSession) {
             self.request = request
             self.session = session
