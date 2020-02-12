@@ -90,6 +90,7 @@ extension LatersErasedTests {
         ("testLaterExecute", testLaterExecute),
         ("testLaterFlatMap", testLaterFlatMap),
         ("testLaterMap", testLaterMap),
+        ("testLaterProcessURLSessionCallback", testLaterProcessURLSessionCallback),
         ("testLaterTryMapNoThrow", testLaterTryMapNoThrow),
         ("testLaterTryMapThrows", testLaterTryMapThrows),
     ]
@@ -101,10 +102,20 @@ extension LatersTests {
     // to regenerate.
     static let __allTests__LatersTests = [
         ("testLater", testLater),
+        ("testLaterDispatchAsync", testLaterDispatchAsync),
+        ("testLaterDispatchAsyncTwice", testLaterDispatchAsyncTwice),
         ("testLaterFlatMap", testLaterFlatMap),
+        ("testLaterFoldFailure", testLaterFoldFailure),
+        ("testLaterFoldSuccess", testLaterFoldSuccess),
         ("testLaterMap", testLaterMap),
+        ("testLaterMapSuccessFailure", testLaterMapSuccessFailure),
+        ("testLaterMapSuccessSucceeds", testLaterMapSuccessSucceeds),
+        ("testLaterReplaceError", testLaterReplaceError),
         ("testLaterTap", testLaterTap),
         ("testLaterTryMapNoThrow", testLaterTryMapNoThrow),
+        ("testLaterTryMapSuccessFails", testLaterTryMapSuccessFails),
+        ("testLaterTryMapSuccessShortCircuits", testLaterTryMapSuccessShortCircuits),
+        ("testLaterTryMapSuccessSucceeds", testLaterTryMapSuccessSucceeds),
         ("testLaterTryMapThrows", testLaterTryMapThrows),
     ]
 }
