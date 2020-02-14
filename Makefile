@@ -1,6 +1,6 @@
 .PHONY: default clean swiftbuild swifttest sync_linuxmain sync_xcodeproj test
 
-default: sync_linuxmain sync_xcodeproj swiftbuild
+default: sync_linuxmain swiftbuild
 
 clean:
 	swift package clean
@@ -13,8 +13,5 @@ swifttest: sync_linuxmain
 
 sync_linuxmain:
 	swift test --generate-linuxmain
-
-sync_xcodeproj: 
-	swift package generate-xcodeproj
 
 test: swifttest
