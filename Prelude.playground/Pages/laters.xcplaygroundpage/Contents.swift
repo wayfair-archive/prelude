@@ -158,3 +158,9 @@ AnyLater<Void> { (callback: (Void) -> Void) in }
 AnyLater<Bool> { _ in }
 AnyLater<(String, Int)> { _ in }
 AnyLater<(Float, Void, [Double])> { $0((1.0, (), [])) }
+
+//
+// create a bunch of interdependent `NSOperation`s zone
+//
+
+// TODO
