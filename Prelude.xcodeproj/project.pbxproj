@@ -22,6 +22,8 @@
 
 /* Begin PBXBuildFile section */
 		24909D3D23D101E400E193FD /* LatersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24909D3C23D101E400E193FD /* LatersTests.swift */; };
+		24C694C42411881000B2C660 /* Laters+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C694C32411881000B2C660 /* Laters+Operation.swift */; };
+		24C694C624118F3900B2C660 /* Laters+OperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C694C524118F3900B2C660 /* Laters+OperationTests.swift */; };
 		OBJ_42 /* ChangeTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* ChangeTracking.swift */; };
 		OBJ_43 /* Laters.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Laters.swift */; };
 		OBJ_44 /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Monoid.swift */; };
@@ -71,6 +73,8 @@
 		2475656123D909F100A2478F /* Prelude.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Prelude.xcconfig; sourceTree = "<group>"; };
 		2475656223D909F100A2478F /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		24909D3C23D101E400E193FD /* LatersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatersTests.swift; sourceTree = "<group>"; };
+		24C694C32411881000B2C660 /* Laters+Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Laters+Operation.swift"; sourceTree = "<group>"; };
+		24C694C524118F3900B2C660 /* Laters+OperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Laters+OperationTests.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* ChangeTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTracking.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Laters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Laters.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Monoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_22 /* ChangeTrackingTests.swift */,
+				24C694C524118F3900B2C660 /* Laters+OperationTests.swift */,
+				24909D3C23D101E400E193FD /* LatersTests.swift */,
 				OBJ_23 /* MonoidTests.swift */,
 				OBJ_24 /* PredicateTests.swift */,
 				OBJ_25 /* PreludeTests.swift */,
@@ -160,7 +166,6 @@
 				OBJ_27 /* RefinementsTests.swift */,
 				OBJ_28 /* SequenceExtensionsTests.swift */,
 				OBJ_29 /* XCTestManifests.swift */,
-				24909D3C23D101E400E193FD /* LatersTests.swift */,
 			);
 			name = PreludeTests;
 			path = Tests/PreludeTests;
@@ -201,13 +206,14 @@
 		OBJ_8 /* Prelude */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* Prelude.h */,
 				OBJ_10 /* ChangeTracking.swift */,
 				OBJ_11 /* Laters.swift */,
+				24C694C32411881000B2C660 /* Laters+Operation.swift */,
 				OBJ_12 /* Monoid.swift */,
 				OBJ_13 /* Nat.swift */,
 				OBJ_14 /* Operators.swift */,
 				OBJ_15 /* Predicate.swift */,
+				OBJ_9 /* Prelude.h */,
 				OBJ_16 /* Prelude.swift */,
 				OBJ_17 /* Reducers.swift */,
 				OBJ_18 /* Refinements.swift */,
@@ -301,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				24C694C42411881000B2C660 /* Laters+Operation.swift in Sources */,
 				OBJ_42 /* ChangeTracking.swift in Sources */,
 				OBJ_43 /* Laters.swift in Sources */,
 				OBJ_44 /* Monoid.swift in Sources */,
@@ -326,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				24C694C624118F3900B2C660 /* Laters+OperationTests.swift in Sources */,
 				OBJ_69 /* ChangeTrackingTests.swift in Sources */,
 				OBJ_70 /* MonoidTests.swift in Sources */,
 				OBJ_71 /* PredicateTests.swift in Sources */,
