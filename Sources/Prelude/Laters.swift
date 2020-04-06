@@ -26,10 +26,35 @@ public enum Laters {
 
 // MARK: - DispatchAsync
 
+/// protocol that represents a type that can return a `DispatchQueue`. We want to be able to distinguish between different queues based on the type that provides them — specifically, we want to be able to statically determine if we are going to call back on the main queue or not. To do so, we’ll define one canonical conformance to this protocol (see `Laters.MainQueue` below) which we know always points to the main queue. Then when we use generic functions that are tagged with `Laters.MainQueue`, we can be sure at compile time that we will be using the main queue
+public protocol TaggedQueue {
+    func getQueue() -> DispatchQueue
+}
+
 public extension Laters {
-    struct DispatchAsync<L: Later> {
-        fileprivate let queue: DispatchQueue
+    struct DispatchAsync<L: Later, T: TaggedQueue> {
+        fileprivate let taggedQueue: T
         fileprivate let upstream: L
+    }
+
+    /// struct, that conforms to `TaggedQueue`, that contains a `DispatchQueue` value provided at runtime. We can’t make any static guarantees about which queue it will be.
+    struct AnyQueue: TaggedQueue {
+        private let queue: DispatchQueue
+
+        fileprivate init(queue: DispatchQueue) {
+            self.queue = queue
+        }
+
+        public func getQueue() -> DispatchQueue {
+            queue
+        }
+    }
+
+    /// struct, that conforms to `TaggedQueue`, that we always know will be pointing at the main queue
+    struct MainQueue: TaggedQueue {
+        public func getQueue() -> DispatchQueue {
+            .main
+        }
     }
 }
 extension Laters.DispatchAsync: Later {
@@ -37,20 +62,64 @@ extension Laters.DispatchAsync: Later {
 
     public func run(_ next: @escaping (L.Output) -> Void) {
         upstream.run { value in
-            self.queue.async { next(value) }
+            self.taggedQueue.getQueue().async { next(value) }
         }
     }
 
-    public func dispatchAsync(on queue: DispatchQueue) -> Laters.DispatchAsync<L> {
-        // overload for when two `dispatchAsync`s are in a row. We only need the last one (there’s no need to dispatch twice)
-        .init(queue: queue, upstream: upstream)
+    // MARK: - `DispatchAsync` overloads which flatten two queues into one
+
+    /// given a `Later` (`self`) which performs some work, return a `Later` which performs the same work, but then dispatches asynchronously onto the provided `queue` prior to calling its callback
+    /// - Parameter queue: a `DispatchQueue`
+    func dispatchAsync(on queue: DispatchQueue) -> Laters.DispatchAsync<L, Laters.AnyQueue> {
+        dispatchAsync(taggedQueue: Laters.AnyQueue(queue: queue))
+    }
+
+    /// given a `Later` (`self`) which performs some work, return a `Later` which performs the same work, but then dispatches asynchronously onto the provided `TaggedQueue` prior to calling its callback
+    /// - Parameter taggedQueue: an instance of a type that conforms to the `TaggedQueue` protocol
+    func dispatchAsync<U: TaggedQueue>(taggedQueue: U) -> Laters.DispatchAsync<L, U> {
+        .init(taggedQueue: taggedQueue, upstream: upstream)
+    }
+
+    /// given a `Later` (`self`) which performs some work, return a `Later` which performs the same work, but then dispatches asynchronously onto the main queue prior to calling its callback
+    func dispatchMain() -> Laters.DispatchAsync<L, Laters.MainQueue> {
+        dispatchAsync(taggedQueue: Laters.MainQueue())
     }
 }
 public extension Later {
     /// given a `Later` (`self`) which performs some work, return a `Later` which performs the same work, but then dispatches asynchronously onto the provided `queue` prior to calling its callback
     /// - Parameter queue: a `DispatchQueue`
-    func dispatchAsync(on queue: DispatchQueue) -> Laters.DispatchAsync<Self> {
-        .init(queue: queue, upstream: self)
+    func dispatchAsync(on queue: DispatchQueue) -> Laters.DispatchAsync<Self, Laters.AnyQueue> {
+        dispatchAsync(taggedQueue: Laters.AnyQueue(queue: queue))
+    }
+
+    /// given a `Later` (`self`) which performs some work, return a `Later` which performs the same work, but then dispatches asynchronously onto the provided `TaggedQueue` prior to calling its callback
+    /// - Parameter taggedQueue: an instance of a type that conforms to the `TaggedQueue` protocol
+    func dispatchAsync<T: TaggedQueue>(taggedQueue: T) -> Laters.DispatchAsync<Self, T> {
+        .init(taggedQueue: taggedQueue, upstream: self)
+    }
+
+    /// given a `Later` (`self`) which performs some work, return a `Later` which performs the same work, but then dispatches asynchronously onto the main queue prior to calling its callback
+    func dispatchMain() -> Laters.DispatchAsync<Self, Laters.MainQueue> {
+        dispatchAsync(taggedQueue: Laters.MainQueue())
+    }
+}
+
+extension Laters.DispatchAsync where T == Laters.MainQueue {
+    public func eraseToAnyLater() -> MainQueueAnyLater<L.Output> {
+        .init(upstream: self.run)
+    }
+}
+
+// MARK: - MainQueueAnyLater
+
+public struct MainQueueAnyLater<A> {
+    fileprivate let upstream: (@escaping (A) -> Void) -> Void
+}
+extension MainQueueAnyLater: Later {
+    public typealias Output = A
+
+    public func run(_ next: @escaping (A) -> Void) {
+        upstream(next)
     }
 }
 
@@ -297,6 +366,13 @@ extension AnyLater: Later {
     }
 }
 public extension Later {
+    func assertEraseToMainQueueAnyLater() -> MainQueueAnyLater<Output> {
+        let asserting = tap { _ in
+            assert(Thread.isMainThread, "`Laters` assertion failure: this is not actually the main thread")
+        }
+        return .init(upstream: asserting.run)
+    }
+
     /// erase the type of a `Later` so that it may be more concise and interoperable
     func eraseToAnyLater() -> AnyLater<Output> {
         .init(upstream: self.run)
