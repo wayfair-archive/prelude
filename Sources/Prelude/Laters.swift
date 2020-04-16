@@ -104,18 +104,20 @@ public extension Later {
     }
 }
 
-extension Laters.DispatchAsync where T == Laters.MainQueue {
-    public func eraseToAnyLater() -> MainQueueAnyLater<L.Output> {
+extension Laters.DispatchAsync {
+    public func eraseToAnyLater() -> TaggedQueueAnyLater<Output, T> {
         .init(upstream: self.run)
     }
 }
 
 // MARK: - MainQueueAnyLater
 
-public struct MainQueueAnyLater<A> {
+public typealias MainQueueAnyLater<A> = TaggedQueueAnyLater<A, Laters.MainQueue>
+
+public struct TaggedQueueAnyLater<A, T: TaggedQueue> {
     fileprivate let upstream: (@escaping (A) -> Void) -> Void
 }
-extension MainQueueAnyLater: Later {
+extension TaggedQueueAnyLater: Later {
     public typealias Output = A
 
     public func run(_ next: @escaping (A) -> Void) {
