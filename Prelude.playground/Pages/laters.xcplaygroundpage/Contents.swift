@@ -101,7 +101,8 @@ func myAsyncFunc(completion: @escaping () -> Void) {
 }
 
 // there are initializers for `AnyLater` that should be sufficient to “capture” any plain, callback-taking function and convert it to a `Later` in one step:
-let a = AnyLater(myAsyncFunc).run {
+let a = AnyLater(myAsyncFunc)
+a.run {
     print("ok")
 }
 
@@ -163,4 +164,73 @@ AnyLater<(Float, Void, [Double])> { $0((1.0, (), [])) }
 // create a bunch of interdependent `NSOperation`s zone
 //
 
-// TODO
+var first = false
+var second = false
+
+// since a `Later` is an asynchronous blob of code that does nothing until we run it, we can write an operator (`.asOperation()`) to bridge between the world of Laters and the world of Foundation `NSOperations`…
+let firstOperation = sendTrue
+    .tap { first = $0 }
+    .map { _ in () }
+    .asOperation()
+
+let secondOperation = Laters.After(deadline: .now() + 2, queue: .main, value: true)
+    .tap { second = $0 }
+    .map { _ in () }
+    .asOperation()
+
+let lastOperation = Laters.After(deadline: .now(), queue: .main, value: ())
+    .tap { _ in print("first: \(first)") }
+    .tap { _ in print("second: \(second)") }
+    .asOperation()
+
+// once you’ve converted a `Later` into an `Operation`, you can use the more elaborate features of `Operation`s on top of the work you already expressed inside the original Laters. Here’re some dependencies…
+lastOperation.addDependency(firstOperation)
+lastOperation.addDependency(secondOperation)
+
+// these Laters, which we were able to define really quickly in a DSL-like style, now gain all the fancy features of `NSOperation`s for free. For example, these three operations will now fire in the order we specified (`assertOperation` is last):
+let queue = OperationQueue()
+queue.addOperations([lastOperation, firstOperation, secondOperation], waitUntilFinished: false)
+
+//
+// magical `MainQueue` zone
+//
+
+// finally, we can use some sneaky type tricks to add other useful information to certain Laters. A `MainQueueAnyLater` is a `Later` that is guaranteed to call its callback on the main thread:
+let x: MainQueueAnyLater<Int> = sendTrue
+    .map { $0 ? 9 : 999 }
+    // the magic is in these two operators here. Any `Later` chain which ends with `.dispatchMain` followed by `.eraseToAnyLater` is “erased” to a `MainQueueAnyLater` (as opposed to just an `AnyLater`). This means that we can write UI functions — for example — which insists that its data be provided by `MainQueueAnyLater`s, which means we are guaranteed that we will be on the right thread before hitting the UI
+    .dispatchMain()
+    .eraseToAnyLater()
+
+// ie. for a `MainQueueAnyLater`, this should always hold…
+x.run { _ in precondition(Thread.isMainThread) }
+
+// we can get the same level of safety for other queues as well. Imagine this is some special work queue we have:
+let anotherQueue = DispatchQueue.global()
+
+// we wrap it in a struct to “tag” it…
+struct MyQueue: TaggedQueue {
+    func getQueue() -> DispatchQueue {
+        anotherQueue
+    }
+}
+
+// and then do whatever we like with Laters API. The resulting type of any `Later` operations which end with a dispatch to that tagged queue, followed by `erase…`, yields a `TaggedQueueAnyLater` which the compiler knows is associated with `MyQueue`.
+let y: TaggedQueueAnyLater<Bool, MyQueue> = sendTrue
+    .dispatchAsync(taggedQueue: MyQueue())
+    .eraseToAnyLater()
+
+// you can then use this type signature to enforce, in the type system, that work is executing on the queues you require:
+y
+    .tap { _ in print("I’m on a global queue!") }
+    .run { _ in precondition(!Thread.isMainThread) }
+
+//
+//
+//
+
+// bonus: the rare double-erase will turn a `MainQueueAnyLater` back into a regular `AnyLater`!
+let z = Laters.After(deadline: .now(), queue: .global(), value: ())
+    .dispatchMain()
+    .eraseToAnyLater()
+    .eraseToAnyLater()
