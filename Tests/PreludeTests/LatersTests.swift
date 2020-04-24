@@ -62,6 +62,39 @@ final class LatersTests: XCTestCase {
         XCTAssertTrue(testValue)
     }
 
+    func testLaterDispatchMain() {
+        var testValue = false
+
+        let expect = expectation(description: "later")
+        sendTrue()
+            .dispatchMain()
+            .tap { _ in XCTAssertTrue(Thread.isMainThread) }
+            .run { value in
+                testValue = value
+                expect.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+
+        XCTAssertTrue(testValue)
+    }
+
+    // compiler tests?! The following manually annotated types should be correct:
+    private let t1: Laters.DispatchAsync<Laters.After<Bool>, Laters.MainQueue> = sendTrue()
+        .dispatchMain()
+
+    private let t2: TaggedQueueAnyLater<Bool, Laters.MainQueue> = sendTrue()
+        .dispatchMain()
+        .eraseToAnyLater()
+
+    private let t3: MainQueueAnyLater<Bool> = sendTrue()
+        .dispatchMain()
+        .eraseToAnyLater()
+
+    private let t4: AnyLater<Bool> = sendTrue()
+        .dispatchMain()
+        .eraseToAnyLater()
+        .eraseToAnyLater()
+
     func testLaterFlatMap() {
         var testValue = ""
 
