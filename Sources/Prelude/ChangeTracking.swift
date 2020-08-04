@@ -17,7 +17,7 @@
         self.value = value
     }
 
-    subscript<T>(dynamicMember keyPath: KeyPath<A, T>) -> T {
+    public subscript<T>(dynamicMember keyPath: KeyPath<A, T>) -> T {
         value[keyPath: keyPath]
     }
 }
